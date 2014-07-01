@@ -1,39 +1,79 @@
+# -*- coding: utf-8 -*-
+"""
+Définit les classes nécessaires pour contenir les informations obtenus par les différents scripts
+"""
+
 import codecs
 import stem
 
 class Documents:
+	"""Contient toutes les informations"""
+
 	def __init__(self):
+		"""Initialise les structures de données
+
+		Un objet Documents va contenir des informations sur les speechs, les paragraphes, les pages de l'article et les liens entre speechs et paragraphes.
+		Pour cela, il fera appel aux autres classes de ce module.
+		"""
 		self.speechs = {}
 		self.paragraphes = {}
 		self.pages = {}
 		self.links = {}
 
 	def infoDureeSpeech(self, duree):
+		"""Spécifie la durée totale de la vidéo"""
 		self.dureeSpeech = duree
 
 	def defineVocabulary(self, vocabulary, stop_words):
+		"""Définit le vocabulaire des documents
+
+		Le vocabulaire est l'ensemble des mots "significatifs" (c'est-à-dire en supprimant la ponctuation et les stop-words) présents dans l'ensemble des speechs et des paragraphes.
+		Les stop-words sont les mots courants, et donc peu significatifs.
+		"""
 		self.vocabulary = vocabulary
 		self.stop_words = stop_words
 
+		#Définit ce vocabulaire pour chaque paragraphe
 		for paragraphe in self.paragraphes.values():
 			paragraphe.defineVocabulary(self.vocabulary, self.stop_words)
 
+		#Ainsi que pour chaque speech
 		for speech in self.speechs.values():
 			speech.defineVocabulary(self.vocabulary, self.stop_words)
 
 	def addSpeech(self, idSpeech, idSlide, doc):
+		"""Ajoute un speech dans les documents
+		
+		On précise son id, l'id de son slide, ainsi son texte
+		"""
+
 		self.speechs[idSpeech] = Speech(idSpeech, idSlide, doc)
 		return self.speechs[idSpeech]
 
 	def addPage(self, idPage, numero, hauteur, largeur):
+		"""Ajoute une page dans les documents
+
+		On précise son id, son numéro (l'id commence à 0, le numéro pas forcément), sa hauteur et sa largeur
+		"""
+
 		self.pages[idPage] = Page(idPage, numero, hauteur, largeur)
 		return self.pages[idPage]
 
 	def addParagraphe(self, idParagraphe, idPage, doc):
+		"""Ajoute un paragraphe dans les documents
+
+		On précise son id, l'id de sa page, et son texte
+		"""
+
 		self.paragraphes[idParagraphe] = Paragraphe(idParagraphe, idPage, doc)
 		return self.paragraphes[idParagraphe]
 
 	def addLink(self, idSpeech, idParagraphe):
+		"""Ajoute un lien dans les documents
+
+		On précise les id du speech et du paragraphe liés
+		"""
+
 		if idSpeech not in self.links:
 			self.links[idSpeech] = {}
 
@@ -42,6 +82,8 @@ class Documents:
 		return self.links[idSpeech][idParagraphe]
 
 	def generateHtmlParagraphe(self):
+		"""Renvoie les informations des paragraphes au format html"""
+
 		text = ""
 
 		tfidf_max = 0
@@ -57,6 +99,8 @@ class Documents:
 		return text
 
 	def generateHtmlSpeech(self):
+		"""Renvoie les informations des speechs au format html"""
+
 		text = ""
 
 		tfidf_max = 0
@@ -72,6 +116,8 @@ class Documents:
 		return text
 
 	def generateHtmlPage(self):
+		"""Renvoie les informations des pages au format html"""
+
 		text = "<div id=\"data_pagePdf\" data-number=\"" + str(len(self.pages)) + "\" >\n"
 		
 		for page in self.pages.values():
@@ -82,6 +128,8 @@ class Documents:
 		return text
 
 	def generateHtmlLink(self):
+		"""Renvoie les informations des liens au format html"""
+
 		text = "<div id=\"data_alignement\" data-number=\"" + str(len(self.links)) + "\" >\n"
 
 		list_links = [link for speech in self.links.values() for link in speech.values()]
@@ -98,7 +146,6 @@ class Documents:
 
 
 class Segment:
-	
 	def __init__(self, idSegment, doc):
 		self.idSegment = idSegment
 		self.doc = doc
@@ -249,12 +296,4 @@ class Word:
 			string += ">" + self.word + "</span>"
 
 			return string
-	
 
-
-
-#vocabulary = {"apple" : 5, "eat" : 2}
-#seg = Segment(1, "I am eating an apple")
-
-#print seg.doc
-#print seg.generateHtml(vocabulary)
