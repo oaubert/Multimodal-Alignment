@@ -1,13 +1,14 @@
+# -*- coding: utf-8 -*-
+"""
+Ce module définit la classe Main, qui coordine les différents scripts, et permet de l'appeler avec des arguments
+"""
+
 import sys
 import codecs
 import segment
 import traitementPdf
 import traitementVideo
 import similarite
-
-"""
-Ce module définit la classe Main, qui coordine les différents scripts, et permet de l'appeler avec des arguments
-"""
 
 class Main:
 	"""Génère les données nécessaires pour trouver un alignement global en effectuant des traitement successifs sur plusieurs fichiers
@@ -81,7 +82,7 @@ class Main:
 #On vérifie le nombre d'argument, puis on instancie et utilise la classe Main
 if len(sys.argv) != 10:
 	print "Erreur, argument manquant !"
-	exit(1)
+	#exit(1)
 else:
 	filePdf = sys.argv[1]
 	fileTranscript = sys.argv[2]
