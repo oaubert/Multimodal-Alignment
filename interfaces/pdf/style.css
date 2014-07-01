@@ -1,0 +1,24 @@
+body
+{
+	margin:0;
+}
+
+#affichage
+{
+	position:absolute;
+	width:100%;
+}
+
+input[type="range"]
+{
+	width:350px;
+}
+
+.matchingWords
+{
+	background-color:red;
+}
+
+image {
+	display: inline;
+}

@@ -1,0 +1,13 @@
+#paragraphe
+{
+	position:absolute;
+	top:5px;
+	right:5px;
+	width:53%;
+	border:solid red 1px;
+}
+
+#paragraphe>div
+{
+	margin:10px;
+}

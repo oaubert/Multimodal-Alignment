@@ -1,0 +1,56 @@
+#info_paragraphe
+{
+	position:absolute;
+	top:5px;
+	left:32%;
+	width:40%;
+	border:solid red 1px;
+}
+
+#info_paragraphe>div
+{
+	border-bottom:solid red 1px;
+}
+
+#info_paragraphe>div:last-child
+{
+	border-bottom:none;
+}
+
+#info_paragraphe>div>div, #info_speech>div>div, #info_word>div
+{
+	margin:10px;
+	border:none;
+}
+
+#info_speech
+{
+	position:absolute;
+	top:5px;
+	left:1%;
+	width:30%;
+	border:solid red 1px;
+}
+
+#highligh
+{
+	position:absolute;
+	top:5px;
+	left:74%;
+	width:25%;
+	border:solid red 1px;
+}
+
+.keyword
+{
+	background-color:#aea;
+}
+
+.matchingWords
+{
+	background-color:#aeb;
+}
+.stop_word
+{
+	background-color:#eee;
+}

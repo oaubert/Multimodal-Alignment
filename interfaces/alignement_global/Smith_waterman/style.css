@@ -1,0 +1,14 @@
+table,th,td
+{
+	border:1px solid black;
+}
+
+td
+{
+	width:30px;
+}
+
+td input
+{
+	width:25px;
+}

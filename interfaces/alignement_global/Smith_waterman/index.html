@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Alignement global</title>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<label for="mot1">Mot 1</label> : <input id="mot1" type="text" />	
+		<label for="mot2">Mot 2</label> : <input id="mot2" type="text" />
+		<button onclick="update()">Ici</button>
+
+		<table id="matrice_cout" border="1">
+		</table>
+
+		<button id="la" onclick="go()" style="display:none">Là</button>
+
+		<table id="matrice_score" border="1">
+		</table>
+
+		<button id="init" onclick="initAlignement();" style="display:none">Init Alignement</button>
+		<button id="meilleur" onclick="meilleursAlignement();" style="display:none">Meilleurs Alignement</button>
+
+		<div id="res">
+			Actuellement :
+			<ul>
+				<li>Possibilité de trouver plusieurs alignement locaux</li>
+				<li>Besoin de travailler sur les coûts</li>
+				<li>Meilleur séparation ?</li>
+			</ul>
+
+		</div>
+
+		<script type="text/javascript" src="script.js"></script>
+	</body>
+</html>

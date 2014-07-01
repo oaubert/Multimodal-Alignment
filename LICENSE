@@ -337,3 +337,13 @@ proprietary programs.  If your program is a subroutine library, you may
 consider it more useful to permit linking proprietary applications with the
 library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.
+
+
+Other documents :
+	All the documentation, including the report, and the slideshow are under CC-BY-SA 4.0 http://creativecommons.org/licenses/by-sa/4.0
+
+
+Credits : 
+	D3.js - http://d3js.org - released under BSD license http://opensource.org/licenses/BSD-3-Clause
+	jQuery - https://jquery.org - released under MIT license http://en.wikipedia.org/wiki/MIT_License
+
