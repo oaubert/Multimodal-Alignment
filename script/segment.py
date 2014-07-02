@@ -9,10 +9,13 @@ On a 7 classes :
 	-Page : Définit une page (de l'article)
 	-Link : Définit un lien entre un speech et un paragraphe
 	-Word : Définit un mot (dans un paragraphe ou un speech)
+On instancie pour le module un tokenizer, appelé lem.
 """
 
 import codecs
 import stem
+
+lem = stem.LemmaTokenizer()
 
 class Documents:
 	"""Contient toutes les informations"""

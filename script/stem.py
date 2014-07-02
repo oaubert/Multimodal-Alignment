@@ -85,8 +85,6 @@ class LemmaTokenizer(object):
 		    return wordnet.NOUN
 
 
-lem = LemmaTokenizer()
-
 
 #lem = LemmaTokenizer()
 #print lem("Figure 1: Partial monitoring games and their minimax regret as it was known previously. The big rectangle denotes the set of all games. Inside the big rectangle, the games are ordered from left to right based on their minimax regret. In the “hard” area, l.e.p. denotes label-efficient prediction. The grey area contains games whose");
