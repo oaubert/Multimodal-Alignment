@@ -425,7 +425,7 @@ class Word:
 
 		self.info = {}
 
-	def addInfo(self, df, idf, tf, tfidf)
+	def addInfo(self, df, idf, tf, tfidf):
 		"""Ajoute des informations au mot"""
 
 		self.info["df"] = df
