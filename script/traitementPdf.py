@@ -11,36 +11,47 @@ import sys
 #Fonction utile
 
 def top(ligne):
+	"""Renvoie la coordonnée en y du haut d'une ligne"""
 	return int(ligne.getAttribute('top'))
 
 def left(ligne):
+	"""Renvoie la coordonnée en x de la limite gauche d'une ligne"""
 	return int(ligne.getAttribute('left'))
 
 def height(ligne):
+	"""Renvoie la hauteur d'une ligne"""
 	return int(ligne.getAttribute('height'))
 
 def width(ligne):
+	"""Renvoie la largeur d'une ligne"""
 	return int(ligne.getAttribute('width'))
 
 def bottom(ligne):
+	"""Calcule et renvoie la coordonnée en y du bas d'une ligne"""
 	return top(ligne) + height(ligne)
 
 def right(ligne):
+	"""Calcule et renvoie la coordonnée en x de la limite droite d'une ligne"""
 	return left(ligne) + width(ligne)
 
 def font(ligne):
+	"""Renvoie la police d'une ligne"""
 	return ligne.getAttribute('font')
 
 def fontId(element):
+	"""Renvoie l'id d'une police"""
 	return element.getAttribute('id')
 
 def fontSize(element):
+	"""Renvoie la taille d'une police"""
 	return element.getAttribute('size')
 
 def fontFamily(element):
+	"""Renvoie la famille d'une police"""
 	return element.getAttribute('family')
 
 def fontColor(element):
+	"""Renvoie la couleur d'une police"""
 	return element.getAttribute('color')
 
 def getText(node):
@@ -72,7 +83,7 @@ def setText(doc, node, texte):
 #Classe Resultat
 
 class TraitementPdf:
-	"""Stocke les résultats du traitement"""
+	"""Traite un fichier xml de l'article pour en extraire les informations nécessaires"""
 
 	def __init__(self, nbCol, file_in, option):
 		"""Initialise la classe Resultat
@@ -81,8 +92,8 @@ class TraitementPdf:
 		:type nbCol: int
 		:param file_in: Chemin du fichier obtenu par pdftohtml
 		:type file_in: str
-		:param file_out: Chemin du fichier de sortie
-		:type file_out: str
+		:param option: Les options de traitement. Ex : option = {"alinea" : True, "interligne" : True, "changementColonne" : True, "trierPolice" : False, "trierMargeGauche" : False}
+		:type option: dict
 
 		"""
 
@@ -100,9 +111,20 @@ class TraitementPdf:
 		self.ecrireResultat(file_out, file_out2)
 
 
-
 	def parsexml(self):
-		"""Analyse le fichier xml pour trouver les paragraphes"""
+		"""Analyse le fichier xml pour trouver les paragraphes
+
+		L'analyse se divise en plusieurs étapes.
+		D'abord un pré-traitement obligatoire :
+			-Détermination de la police standard du texte
+			-Pré-traitement sur le texte
+			-Détermination des valeurs de la marge à droite et de l'alinéa du texte, ainsi que de l'interligne
+		Ensuite un pré-traitement optionnel (décidé en fonction des options):
+			-Suppression des lignes avec polices non standard
+			-Suppression des lignes avec un marge non standard
+		Le traitement, qui liste les pages avec leur hauteur et leur largent, puis qui parse chaque page grâce aux informations du pré-traitement
+		Puis un post-traitement, qui repasse sur les paragraphes trouvé pour supprimer des paragraphes non utile (hearder, footer, quelques légendes)
+		"""
 
 		page = []
 		self.doc = minidom.parse(self.file_in)
@@ -127,10 +149,6 @@ class TraitementPdf:
 			self.supprimerNonColonne(colonne, alinea)
 
 
-		#self.ecrirePreTraitement()
-
-
-
 		#Traitement		
 
 		current = self.doc.childNodes[1].firstChild
@@ -144,47 +162,39 @@ class TraitementPdf:
 			self.resultat.append(self.parsePage(item, colonne, alinea, interligne))
 
 		
+		#Post-traitement
 		self.virerHeaderFooterNumPage(self.resultat)
 
 
 
-	def preTraitement(self, mainFont, taille, otherFont):
+	def preTraitement(self, mainFont, otherFont):
 		"""Pré-traite le document pour supprimer ce qui ne nous intéresse pas
 		Pré-traitement obligatoire		
 
 		:param mainFont: La police usuelle
 		:type mainFont: str
-		:param taille: Taille usuelle d'une ligne
-		:type taille: int
 		:param otherFont: Tous les doublons de la police usuelle
 		:type otherFont: List of str
 
-		Garde seulement les lignes, par page
-		Remplace tous les doublons de la police usuelle par la police usuelle
+		1) ne garde que les lignes de texte (balise.nodeName == 'text', doc.childNodes[1] == 'page')
+		Enlève donc les sauts de ligne (#text) les images et les fonts. Remplace les doublons de la police usuelle par la police usuelle
 
-		Problème à régler :
-			Ne garder que les paragraphes (pour le moment)
-			Virer les noeuds de saut de ligne
-			Réunir en une ligne les lignes spliter à cause des caractères spéciaux
-
-		On considère :
-			findColonne nous trouve les indices left des colonnes
+		2) réunir les lignes splitée
+		Suppositions : deux balises sont supposée de la même ligne si la différence des hauteurs < 10
 		"""
 
-		# 1) ne garde que les lignes de texte (balise.nodeName == 'text', doc.childNodes[1] == 'page')
-		# Enlève donc les sauts de ligne (#text) les images et les fonts
-		
+		# 1) 
 		self.garderPage()
 		self.garderTexte()
 		self.replaceFont(mainFont, otherFont)
 	
-		# 2) réunir les lignes splitée
-		# Suppositions : deux balises sont supposée de la même ligne si la différence des hauteurs < 10
-
+		# 2)
 		self.unsplitLine(mainFont)
 	
 
 	def garderPage(self):
+		"""Ne garde que les noeuds des pages"""
+
 		current = self.doc.childNodes[1].firstChild
 
 		while current:
@@ -200,6 +210,8 @@ class TraitementPdf:
 
 
 	def garderTexte(self):
+		"""Pour chaque page, ne garde que les noeuds de texte"""
+
 		current = self.doc.childNodes[1].firstChild
 	
 		while current:
@@ -219,7 +231,17 @@ class TraitementPdf:
 			current = current.nextSibling
 
 	
-	def replaceFont(self, mainFont, otherFont): #On considère garderTexte déjà exécuté
+	def replaceFont(self, mainFont, otherFont): 
+		"""Remplace les doublons de polices par la police usuelle
+
+		:param mainFont: La police usuelle
+		:type mainFont: str
+		:param otherFont: Tous les doublons de la police usuelle
+		:type otherFont: List of str
+
+		On considère garderTexte déjà exécuté
+		"""
+
 		current = self.doc.childNodes[1].firstChild
 
 		while current:
@@ -236,6 +258,12 @@ class TraitementPdf:
 
 
 	def unsplitLine(self, mainFont):
+		"""Réuni des lignes séparées à cause de caractères spéciaux
+
+		L'extracteur de pdf définit une ligne comme un ensemble sur la "même ligne", avec une même police et une même taille. Ainsi, si il y a un changement de police sur une même ligne, on aura deux lignes (ou plus) dans le xml. Il faut donc réunir ces lignes, et mettre leurs coordonnées en commun.
+		On définit deux lignes à réunir si la différence des hauteurs est inférieur à 10
+		"""
+
 		current = self.doc.childNodes[1].firstChild
 
 		while current:
@@ -526,6 +554,14 @@ class TraitementPdf:
 				
 
 	def virerHeaderFooterNumPage(self, paragraphe):
+		"""Supprimer les hearders, footers et quelques légendes
+
+		:param paragraphe : le résultat des traitements
+		:type paragraphe : dict
+
+		On supprime les paragraphes composé seulement de numéro ou trop court
+		"""
+
 		paragrapheCourt = {}
 		toDelete = []
 
@@ -576,11 +612,19 @@ class TraitementPdf:
 		:type colonne: Tuple de nbCol int
 		:param alinea: Le tuple des coordonnées left des alinéa de chaque colonne
 		:type alinea: Tuple de nbCol int
+		:param interligne: L'interligne usuelle
+		:type interligne: int
 		:returns: Liste de int : [top, left, right, bottom]
 
-		Ne marche pas quand la ligne du pdf est divise en plusieurs lignes html (caractere speciaux). Exemple : page 2 "and l"
-		D'où la nécessité du preTraitement
+		Chaque paragraphe peut être défini de plusieurs manières :
+			-Un nouvel alinéa
+			-Une interligne trop grande
+			-Un changement de colonne
+		On peut choisir d'appliquer ces choix grâce aux options "alinea", "interligne", et "changementColonne"
 
+		Les paragraphes sont définis par page, ainsi un paragraphe s'étalant sur deux pages sera coupé.
+		
+		On définit une marge d'erreur pour travailler sur les différences de hauteur (interligne ou changement de colonne).
 		"""
 
 		paragraphe = []
