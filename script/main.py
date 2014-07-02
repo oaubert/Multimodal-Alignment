@@ -82,8 +82,8 @@ class Main:
 if __name__ == '__main__':
         #On vérifie le nombre d'argument, puis on instancie et utilise la classe Main
         if len(sys.argv) != 10:
-                print "Erreur, argument manquant !"
-                #exit(1)
+                print "Syntax: %s pdffile videofile slidefile nbColonne humanTranscript paragraphefile speechfile pagefile alignmentfile" % sys.argv[0]
+                exit(1)
         else:
                 filePdf = sys.argv[1]
                 fileTranscript = sys.argv[2]
