@@ -79,22 +79,23 @@ class Main:
 
 
 
-#On vérifie le nombre d'argument, puis on instancie et utilise la classe Main
-if len(sys.argv) != 10:
-	print "Erreur, argument manquant !"
-	#exit(1)
-else:
-	filePdf = sys.argv[1]
-	fileTranscript = sys.argv[2]
-	fileSlide = sys.argv[3]
-	nbColonnePdf = sys.argv[4]
-	humanTranscript = sys.argv[5]
-	fileParagraphe = sys.argv[6]
-	fileSpeech = sys.argv[7]
-	filePage = sys.argv[8]
-	fileAlignement = sys.argv[9]
+if __name__ == '__main__':
+        #On vérifie le nombre d'argument, puis on instancie et utilise la classe Main
+        if len(sys.argv) != 10:
+                print "Erreur, argument manquant !"
+                #exit(1)
+        else:
+                filePdf = sys.argv[1]
+                fileTranscript = sys.argv[2]
+                fileSlide = sys.argv[3]
+                nbColonnePdf = sys.argv[4]
+                humanTranscript = sys.argv[5]
+                fileParagraphe = sys.argv[6]
+                fileSpeech = sys.argv[7]
+                filePage = sys.argv[8]
+                fileAlignement = sys.argv[9]
 
-	main = Main()
+                main = Main()
 
-	main.run(filePdf, fileTranscript, fileSlide, nbColonnePdf, humanTranscript)
-	main.generateHtml(fileParagraphe, fileSpeech, filePage, fileAlignement)
+                main.run(filePdf, fileTranscript, fileSlide, nbColonnePdf, humanTranscript)
+                main.generateHtml(fileParagraphe, fileSpeech, filePage, fileAlignement)

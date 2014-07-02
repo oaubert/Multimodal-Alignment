@@ -3,6 +3,7 @@ from xml.sax.saxutils import escape
 import codecs
 import tfidf
 import stem
+import sys
 import segment
 import json
 
@@ -265,8 +266,10 @@ class Similarite:
 
 """	
 
-
-def main():
-	sim = Similarite("pdf.xml", "transcript.xml", "lemmatize")
+if __name__ == '__main__':
+        if len(sys.argv < 4):
+                print "Syntaxe: %s pdf.xml transcript.xml" % sys.argv[0]
+                sys.exit(1)
+	sim = Similarite(sys.argv[1], sys.argv[2], "lemmatize")
 	sim.analyse_resultat()
 	sim.ecrire_resultat()

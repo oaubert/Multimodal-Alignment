@@ -679,11 +679,9 @@ class TraitementPdf:
 
 
 #Programme lui même
-
-def main():	
-
+if __name__ == '__main__':
 	if len(sys.argv) != 3 and len(sys.argv) != 8:
-		print "Erreur, argument manquant"
+		print "Syntax: %s nbColonne input_file [alinea interligne changementColonne trierPolice trierMargeGauche]" % sys.argv[0]
 		sys.exit(1)
 
 	nbColonne = int(sys.argv[1])

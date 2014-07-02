@@ -178,9 +178,9 @@ class TraitementVideo:
 		return self.doc.firstChild.getElementsByTagName('head')[0].getElementsByTagName('tl:d')[0].getAttribute('e')
 		
 
-def main():
+if __name__ == '__main__':
 	if len(sys.argv) != 3:
-		print "Erreur, argument manquant !"
+		print "Syntax: %s videofile slidefile" % sys.argv[0]
 		exit(1)
 	else:
 		t = TraitementVideo(sys.argv[1], sys.argv[2], "res.xml")
