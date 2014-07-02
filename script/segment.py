@@ -146,16 +146,35 @@ class Documents:
 
 
 class Segment:
+	"""Définit un segment, soit un paragraphe, soit un speech"""
+
+
 	def __init__(self, idSegment, doc):
+		"""Initialise le segment
+
+		On précise son id, et son texte
+		"""
+
 		self.idSegment = idSegment
 		self.doc = doc
 		self.words = []
 
 	def defineVocabulary(self, vocabulary, stop_words):
+		"""Définit le vocabulaire du segment
+
+		À partir du vocabulaire et des stops-words de l'ensemble des documents, on va tokenizer et lemmatizer le segment, pour trouver son vocabulaire
+		"""
+
 		for word, pos in stem.lem.tokenize(self.doc):
 			self.words.append(Word(word, pos, vocabulary, stop_words))
 
 	def infoWords(self, df, idf, tf, tfidf, idSegment):
+		"""Ajoute les informations pour chaque mot
+	
+		On précise leurs df, idf, tf et tfidf pour le segment donné
+		On calcule au passage le tfidf maximum du segment
+		"""
+		
 		self.tfidf_max = 0
 
 		for word in self.words:
