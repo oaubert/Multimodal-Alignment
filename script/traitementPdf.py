@@ -133,7 +133,7 @@ class TraitementPdf:
 	
 		police, taille, otherPolice = self.findPolice()
 
-		self.preTraitement(police, taille, otherPolice) #On ne garde que l'utile et l'agréable
+		self.preTraitement(police, otherPolice) #On ne garde que l'utile et l'agréable
 
 		colonne = self.findColonne() #On trouve les valeurs des left des deux colonnes
 		alinea = self.findAlinea(colonne)
