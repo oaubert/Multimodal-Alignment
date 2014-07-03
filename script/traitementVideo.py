@@ -56,7 +56,8 @@ class TraitementVideo:
 
 		self.format = self.findFormat()
 		self.duree = self.findDuree()
-		self.human = bool(human)
+		self.human = (human in ["True", "true", "0"])
+
 
 	def findFormat(self):
 		"""Renvoie le format de la transcription
@@ -87,12 +88,13 @@ class TraitementVideo:
 		"""
 
 		temps_slide = self.findSlide()
-		
 
 		if self.format == "emlDecoder" and self.human == False:
 			nodes = [w for w in [self.doc_body.getElementsByTagName('tl:w')]][0]
 		elif self.format == "XEROX" or self.human == True:
 			nodes = [p for p in [s for s in [self.doc_body.getElementsByTagName('tl:s')]][0] if p.hasAttribute('aT') and p.getAttribute('aT') == 'human']
+
+
 
 		temps_slide.append({'sI' : temps_slide[-1]['sI'], 'b' : temps_slide[-1]['e'], 'e' : end(nodes[-1])})
 
@@ -177,8 +179,9 @@ class TraitementVideo:
 				silence.append({'begin' : end(previousWord), 'end' : begin(word), 'duree' : begin(word) - end(previousWord)})
 				previousWord = word
 
-		for e in [s for s in silence if s['duree'] > 0.5]:
-			print e
+		#Affichage
+		#for e in [s for s in silence if s['duree'] > 0.5]:
+		#	print e
 
 		return silence
 
