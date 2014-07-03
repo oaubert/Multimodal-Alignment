@@ -21,21 +21,21 @@ class Tfidf:
 		-Calcule d'informations supplémentaires sur les mesures calculées
 	"""
 	
-	def __init__(self, paragraphe, slide):
+	def __init__(self, paragraphe, speech):
 		"""Initialise les données
 
 		Entrée :
 			-paragraphe : liste des textes des paragraphes
-			-slide : liste des textes des speechs
+			-speech : liste des textes des speechs
 
 		On initialise set comme l'ensemble des textes
 		"""
 
 		self.paragraphe = paragraphe
-		self.slide = slide
+		self.speech = speech
 
 		self.set = list(self.paragraphe) #recopie
-		self.set.extend(self.slide)
+		self.set.extend(self.speech)
 
 
 	def count(self, traitement=None):
@@ -81,7 +81,7 @@ class Tfidf:
 	
 
 		id_set = 0
-		for s in [self.paragraphe, self.slide]:
+		for s in [self.paragraphe, self.speech]:
 			for j in range(len(s)):
 				for i in range(len(self.vocabulary)):
 					for k,p in enumerate(ponderation):
@@ -195,8 +195,6 @@ class Tfidf:
 				else:
 					self.similarite[i] = {j : value}
 
-				#print "Slide : ", i, "  Paragraphe : ", j, "  Similarite : ", value
-
 
 	#Informations
 
@@ -210,24 +208,24 @@ class Tfidf:
 		self.ecartType = {}
 		self.percentZero = {}
 
-		for id_slide,slide in self.similarite.iteritems():
+		for id_speech,speech in self.similarite.iteritems():
 			somme = 0.
 			nbZero = 0
 
-			for v in slide.values():
+			for v in speech.values():
 				somme += v
 				if v == 0:
 					nbZero += 1
 
-			self.moyenne[id_slide] = somme / float(len(slide))
-			self.percentZero[id_slide] = float((nbZero * 100)) / float(len(slide))
+			self.moyenne[id_speech] = somme / float(len(speech))
+			self.percentZero[id_speech] = float((nbZero * 100)) / float(len(speech))
 
 			somme = 0.
 
-			for v in slide.values():
-				somme += (v - self.moyenne[id_slide])**2
+			for v in speech.values():
+				somme += (v - self.moyenne[id_speech])**2
 
-			self.ecartType[id_slide] = numpy.sqrt(somme) / float(len(slide))
+			self.ecartType[id_speech] = numpy.sqrt(somme) / float(len(speech))
 
 
 	def do_matchingWords(self):
@@ -238,7 +236,7 @@ class Tfidf:
 
 		self.matchingWords = {}
 
-		for j,slide in enumerate(self.tfidf[len(self.paragraphe):]):
+		for j,speech in enumerate(self.tfidf[len(self.paragraphe):]):
 			self.matchingWords[j] = {}
 			for i,paragraphe in enumerate(self.tfidf[:len(self.paragraphe)]):
 				self.matchingWords[j][i] = {}
@@ -249,12 +247,12 @@ class Tfidf:
 
 	
 	def do_match(self, n=None):
-		"""Trie les n meilleurs similarités pour chaque slide
+		"""Trie les n meilleurs similarités pour chaque speech
 
 		Si n = None, on garde toutes les similarités, triées, stockées dans self.match
 		"""
 		self.match = {}
-		for i,s1 in enumerate(self.slide):
+		for i,s1 in enumerate(self.speech):
 			if n:
 				self.match[i] = sorted(self.similarite[i].iteritems(), key=lambda (k,v) : (v,k))[-n:]
 			else:

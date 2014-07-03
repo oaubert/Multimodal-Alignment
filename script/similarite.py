@@ -46,7 +46,7 @@ class Similarite:
 			self.document.paragraphes[idParagraphe].infoWords(self.tfidf_cal.df, self.tfidf_cal.idf, self.tfidf_cal.tf, self.tfidf_cal.tfidf, idParagraphe)
 
 		
-		for idSpeech in range(len(self.tfidf_cal.slide)):
+		for idSpeech in range(len(self.tfidf_cal.speech)):
 			idSpeechMatrice = idSpeech + len(self.tfidf_cal.paragraphe);
 			speech = self.document.speechs[idSpeech]
 
