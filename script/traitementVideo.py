@@ -256,7 +256,6 @@ class TraitementVideo:
 		transcript.appendChild(video)
 
 		video.setAttribute('id', str(slide_id))
-		video.setAttribute('id', str(slide_id))
 		video.setAttribute('begin', str(video_info['begin']))
 		video.setAttribute('end', str(video_info['end']))
 		video.setAttribute('sI', str(video_info['sI']))
