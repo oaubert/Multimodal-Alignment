@@ -293,5 +293,10 @@ class Tfidf:
 		self.do_infoMesure()
 		self.do_matchingWords()
 
-#t = Tfidf(["Je parle de poire", "Je parle de pomme", "Je parle de fraise"], ["This is pomme poire fraise"]) 
-#t.go([0.5], 1)
+
+
+
+if __name__ == '__main__':
+	#Exemple d'utilisation
+	t = Tfidf(["Je parle de poire", "Je parle de pomme", "Je parle de fraise"], ["This is pomme poire fraise"]) 
+	t.go([], None, "lemmatize")
