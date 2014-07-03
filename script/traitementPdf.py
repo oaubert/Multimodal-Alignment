@@ -105,11 +105,6 @@ class TraitementPdf:
 
 		self.option = option;
 
-	def go(self, file_out, file_out2):
-		"""Lance le traitement, et écrit le résultat"""
-		self.parsexml()
-		self.ecrireResultat(file_out, file_out2)
-
 
 	def parsexml(self):
 		"""Analyse le fichier xml pour trouver les paragraphes
@@ -666,6 +661,7 @@ class TraitementPdf:
 
 
 	def formatResultat(self, document):
+		"""Prend un objet Documents (voir segment.py) et y ajoute tous les paragraphes et les pages trouvés"""
 
 		idParagraphe = 0;
 
@@ -681,22 +677,12 @@ class TraitementPdf:
 				idParagraphe += 1
 
 
-
-	def ecrirePreTraitement(self, file_tmp):
-		fichier = codecs.open(file_tmp, 'w', "utf-8")
-		fichier.write(self.doc.toprettyxml())
-		fichier.close()
-
-
-
-	def ecrireResultat(self, file_out, file_out2):
+	def ecrireResultat(self, file_out):
 		"""Ecrit le resultat du traitement, dans un format utilisable par l'interface web"""
 
 		fichier = codecs.open(file_out, "w", "utf-8")
-		fichier2 = codecs.open(file_out2, "w", "utf-8")
 
 		fichier.write('<?xml version="1.0" encoding="UTF-8"?>\n<pdf>\n')
-		fichier2.write('<?xml version="1.0" encoding="UTF-8"?>\n<pdf nbParagraphe="' + str(sum(len(x) for x in self.resultat)) + '" >\n')
 
 		id_ = 0
 
@@ -708,13 +694,11 @@ class TraitementPdf:
 
 			for paragraphe in page:
 				fichier.write('\t\t<texte id="' + str(id_) + '" time="0.0_0.0" style="top:' + str(100*paragraphe[0] / h) + '%; left:' + str(100*paragraphe[1]/w) + '%; right:' + str(100 - (100*paragraphe[2]/w)) + '%; bottom:' + str(100 - (100*paragraphe[3]/h)) + '%;"/>\n')
-				fichier2.write('\t<paragraphe id="' + str(id_) + '" begin="0.0" end="0.0">' + escape(paragraphe[4]) + '</paragraphe>\n')
 				id_ = id_ + 1
 
 			fichier.write('\t</page>\n')
 
 		fichier.write('</pdf>')
-		fichier2.write('</pdf>')
 		fichier.close()
 
 
@@ -730,8 +714,6 @@ if __name__ == '__main__':
 
 	nbColonne = int(sys.argv[1])
 	file_in = sys.argv[2]
-	file_out = "conf.xml"
-	file_out2 = "res.xml"
 
 	if len(sys.argv) == 8:
 		option = {"alinea" : not (sys.argv[3] == "False"), "interligne" : not (sys.argv[4] == "False"), "changementColonne" : not (sys.argv[5] == "False"), "trierPolice" : not (sys.argv[6] == "False"), "trierMargeGauche" : not (sys.argv[7] == "False")};
@@ -739,8 +721,8 @@ if __name__ == '__main__':
 	else:
 		option = {"alinea" : True, "interligne" : True, "changementColonne" : True, "trierPolice" : False, "trierMargeGauche" : False};
 
-	print option
  
 	res = TraitementPdf(nbColonne, file_in, option)
-	res.go(file_out, file_out2)
+	res.parsexml()
+	res.ecrireResultat("res.xml")
 
