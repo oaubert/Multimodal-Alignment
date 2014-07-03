@@ -240,7 +240,7 @@ class TraitementVideo:
 		self.res.appendChild(transcript)
 
 		
-		for k,v in splitTime.iteritems():
+		for k,v in self.splitTime.iteritems():
 			self.addVideo(transcript, v, k)
 
 		transcript.setAttribute('nbSpeech', str(len(transcript.childNodes)))
@@ -275,4 +275,4 @@ if __name__ == '__main__':
 	else:
 		t = TraitementVideo(sys.argv[1], sys.argv[2], sys.argv[3])
 		t.traiter()
-		t.ecrireResultat()
+		t.ecrireResultat("resSpeech.xml")
