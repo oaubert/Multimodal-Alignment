@@ -266,10 +266,10 @@ class TraitementVideo:
 		
 
 if __name__ == '__main__':
-	if len(sys.argv) != 3:
-		print "Syntax: %s videofile slidefile" % sys.argv[0]
+	if len(sys.argv) != 4:
+		print "Syntax: %s videofile slidefile humanTranscript" % sys.argv[0]
 		exit(1)
 	else:
-		t = TraitementVideo(sys.argv[1], sys.argv[2], "res.xml")
+		t = TraitementVideo(sys.argv[1], sys.argv[2], sys.argv[3])
 		t.traiter()
 		t.ecrireResultat()
