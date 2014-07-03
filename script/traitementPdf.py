@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+"""Ce module permet de traiter le fichier xml obtenu du pdf de l'article pour découper le texte en paragraphe, et obtenir leurs coordonnées sur la page"""
+
 import codecs
 from xml.dom import minidom
 from xml.sax.saxutils import escape
