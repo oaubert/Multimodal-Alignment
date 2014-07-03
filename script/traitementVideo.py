@@ -56,7 +56,15 @@ class TraitementVideo:
 
 		self.format = self.findFormat()
 		self.duree = self.findDuree()
-		self.human = (human in ["True", "true", "0"])
+		self.human = (human in ["True", "true", "1"])
+
+
+		if self.format == "emlDecoder" and self.human == False:
+			self.nodes = [w for w in [self.doc_body.getElementsByTagName('tl:w')]][0]
+		elif self.human == True:
+			self.nodes = [p for p in [s for s in [self.doc_body.getElementsByTagName('tl:s')]][0] if p.hasAttribute('aT') and p.getAttribute('aT') == 'human']
+		elif self.format == "XEROX":
+			nodes = [s for s in [self.doc_body.getElementsByTagName('tl:s')]][0]
 
 
 	def findFormat(self):
@@ -89,19 +97,12 @@ class TraitementVideo:
 
 		temps_slide = self.findSlide()
 
-		if self.format == "emlDecoder" and self.human == False:
-			nodes = [w for w in [self.doc_body.getElementsByTagName('tl:w')]][0]
-		elif self.format == "XEROX" or self.human == True:
-			nodes = [p for p in [s for s in [self.doc_body.getElementsByTagName('tl:s')]][0] if p.hasAttribute('aT') and p.getAttribute('aT') == 'human']
-
-
-
-		temps_slide.append({'sI' : temps_slide[-1]['sI'], 'b' : temps_slide[-1]['e'], 'e' : end(nodes[-1])})
+		temps_slide.append({'sI' : temps_slide[-1]['sI'], 'b' : temps_slide[-1]['e'], 'e' : end(self.nodes[-1])})
 
 
 		bloc_video = {}
 
-		for v in nodes:
+		for v in self.nodes:
 			paire = [{'id' : int(s['id']), 'video' : {'begin' : begin(v), 'end' : end(v), 'sI' : int(s['sI']), 'texte' : text(v)}} for s in filter(lambda x : isIn(begin(v), x), temps_slide)][0]
 			
 			if paire['id'] in bloc_video:
@@ -164,17 +165,12 @@ class TraitementVideo:
 
 		Sortie : les informations sur les silences (début, fin, durée)
 		"""
-
-		if self.format == "emlDecoder":
-			nodes = [w for w in [self.doc_body.getElementsByTagName('tl:w')]][0]
-		elif self.format == "XEROX":
-			nodes = [s for s in [self.doc_body.getElementsByTagName('tl:s')]][0]
 		
-		silence = [{'begin' : 0., 'end' : begin(nodes[0]), 'duree' : begin(nodes[0])}]
+		silence = [{'begin' : 0., 'end' : begin(self.nodes[0]), 'duree' : begin(self.nodes[0])}]
 
-		previousWord = nodes[0]
+		previousWord = self.nodes[0]
 
-		for word in nodes[1:]:
+		for word in self.nodes[1:]:
 			if text(word) != "~SILENCE~" and text(word) != "[SILENCE]":
 				silence.append({'begin' : end(previousWord), 'end' : begin(word), 'duree' : begin(word) - end(previousWord)})
 				previousWord = word
