@@ -1,20 +1,37 @@
+/** Initialisation de la visualisation **/
+
+//Création du svg
 var svg = d3.select("#visualisation")
 		    .append("svg")
 		    .attr("width", window.innerWidth)
 		    .attr("height", 200)
 		    .style("border", "1px solid black")
 
-	var isModeOpacity = false;
-
-	var posTimeline = {"x" : 20, "y" : 20, "width" : window.innerWidth-40, "height" : 50}
-
-	var color = {"faible" : "#FDE7E7", "moyen" : "#FAC5C5", "fort" : "red"}
-	var colorParagraphe = {"nulle" : "transparent", "faible" : "#bbb", "moyen" : "#777", "fort" : "#444"}
-
+	
+	/* Création de 4 groupes à visualiser :
+		-imageGroup : les images de l'article (une image par page)
+		-speechGroup : la visualisation des speechs
+		-paragrapheGroup : la visualisation des paragraphes
+		-linkGroup : la visualisation des liens
+	*/
+	
 	var imageGroup = svg.append("g").attr("id", "svg_group_image");
 	var speechGroup = svg.append("g").attr("id", "svg_group_speech");
 	var paragrapheGroup = svg.append("g").attr("id", "svg_group_paragraphe");
 	var linkGroup = svg.append("g").attr("id", "svg_group_link");
+
+
+	//Options
+
+	var color = {"faible" : "#FDE7E7", "moyen" : "#FAC5C5", "fort" : "red"}
+	var colorParagraphe = {"nulle" : "transparent", "faible" : "#bbb", "moyen" : "#777", "fort" : "#444"}
+
+	var tfidf_max = Math.max($("#data_pdf").attr("data-tfidf_max"), $("#data_transcript").attr("data-tfidf_max"));
+
+
+	//Création et affichage de la timeline de la vidéo
+
+	var posTimeline = {"x" : 20, "y" : 20, "width" : window.innerWidth-40, "height" : 50}
 
 	var timeline = speechGroup.append("rect")
                          .attr("x", posTimeline.x)
@@ -23,7 +40,15 @@ var svg = d3.select("#visualisation")
                          .attr("height", posTimeline.height)
 						 .attr("fill", "blue"); 
 
-	var tfidf_max = Math.max($("#data_pdf").attr("data-tfidf_max"), $("#data_transcript").attr("data-tfidf_max"));
+	
+
+	// Traitement de certaine données
+		
+	
+	/* dataPage_traite
+		Les données sur les pages : à partir du nombre de page, et de leurs hauteurs et largeurs, on détermine la hauteur et la largeur sur la page pour les mettre toutes sur la même ligne, et leur position. 
+		On va aussi chercher l'image au format jpg
+	*/
 	
 	var dataPage_traite = new Array()
 
@@ -41,6 +66,31 @@ var svg = d3.select("#visualisation")
 			}
 		}
 
+
+
+	/* dataParagraphe_traite 
+		Les données sur les paragraphes : à partir des limites hautes, basses, gauches et droites des paragraphes, on détermine les coordonnées des quatres coins
+	*/
+
+	var dataParagraphe_traite = new Array()
+		
+		for(i = 0; i < dataParagraphe.length; i++)
+		{
+			var d = dataParagraphe[i];
+			var point = new Array()
+			
+			point[0] = getPoint(dataPage_traite[d.dataset.idpage], d.dataset.left, d.dataset.top)						//en haut à gauche
+			point[1] = getPoint(dataPage_traite[d.dataset.idpage], (100 - d.dataset.right), d.dataset.top)				//en haut à droite
+			point[2] = getPoint(dataPage_traite[d.dataset.idpage], (100 - d.dataset.right), (100 - d.dataset.bottom))	//en bas à droite
+			point[3] = getPoint(dataPage_traite[d.dataset.idpage], d.dataset.left, (100 - d.dataset.bottom))			//en bas à gauche
+
+			dataParagraphe_traite[i] = {'id' : d.id, "page" : d.dataset.idPage, "point" : point, "number" : d.dataset.id}
+		}
+
+
+	
+	//Affichage des pages
+
     var imgs = imageGroup.selectAll("image")
         .data(dataPage_traite)
 		.enter()
@@ -52,32 +102,31 @@ var svg = d3.select("#visualisation")
 			.attr("xlink:href",function(d){return d.src;});
 
 
-	var dataParagraphe_traite = new Array()
-		
-		for(i = 0; i < dataParagraphe.length; i++)
-		{
-			var d = dataParagraphe[i];
-			var point = new Array()
-			
-			point[0] = getPoint(dataPage_traite[d.dataset.idpage], d.dataset.left, d.dataset.top)
-			point[1] = getPoint(dataPage_traite[d.dataset.idpage], (100 - d.dataset.right), d.dataset.top)
-			point[2] = getPoint(dataPage_traite[d.dataset.idpage], (100 - d.dataset.right), (100 - d.dataset.bottom))
-			point[3] = getPoint(dataPage_traite[d.dataset.idpage], d.dataset.left, (100 - d.dataset.bottom))
-
-			dataParagraphe_traite[i] = {'id' : d.id, "page" : d.dataset.idPage, "point" : point, "number" : d.dataset.id}
-		}
+	//Affichage des speechs, paragraphes et liens
 
 	var speech = createSpeech(speechGroup);
 	var paragraphe = createParagraphe(paragrapheGroup);
 	var link = createLink(linkGroup);
 
+
+	//Initialisation du mode de visualisation
+
 	var opacity;
 	
 	modeLine();
 
+
+	//Sélection des liens à afficher selon les seuils choisis
+
 	selectLink(document.getElementById('nbLink').value, document.getElementById('seuil').value);
 
 
+/*Affiche les speechs sur la timeline
+
+On leur ajoute deux actions :
+	-au passage de la souris, on met en valeur le speech en question, et les liens et les paragraphes qui lui sont liés
+	-au clic, on sélectionne le speech et les liens et paragraphes correspondant, et on affiche les informations qui s'y rapportent
+*/
 function createSpeech(group)
 {
 	var speech = group.selectAll(".speech")
@@ -125,6 +174,11 @@ function createSpeech(group)
 }
 
 
+/*Encadre les paragraphes sur les images des pages
+
+On leur ajoute une action :
+	-au passage de la souris, on met en valeur le paragraphe en question, et les liens et les speechs qui lui sont liés
+*/
 function createParagraphe(group)
 {
 	var paragraphe = group.selectAll(".paragraphe")
@@ -147,10 +201,7 @@ function createParagraphe(group)
 													})
 								.attr("stroke-width", 1)
 								.attr("stroke", "green")
-								.attr("fill", "#fff")/*function(d)
-												{
-													return getColorParagraphe(d.id);
-												})*/
+								.attr("fill", "#fff")
 								.attr("fill-opacity", 0.5)
 								.on("mouseover", function(d)
 												 {
@@ -170,7 +221,16 @@ function createParagraphe(group)
 }
 
 
+/*Prépare sur les liens entre les speechs et les paragraphes, en traçant des lignes
 
+Les liens sont initialisés avec un display none, et ne sont donc pas visible.
+Ils seront affichés à deux conditions : (voir la fonction selectLink)
+	-On est en mode Line et pas Opacity
+	-Les liens appartiennent au seuil décidé
+
+On leur ajoute une action :
+	-au passage de la souris (si affiché), on met en valeur le lien en question, et le speech et le paragraphe qu'il relie
+*/
 function createLink(group)
 {
 	var link = group.selectAll(".link")
