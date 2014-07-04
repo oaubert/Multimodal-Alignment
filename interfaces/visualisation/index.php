@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Sélection d'une conférence</title>
+		<title>Interface d'évaluation - Sélection d'une conférence</title>
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
