@@ -1,3 +1,12 @@
+/*** Fonctions permettant de changer de mode de visualisation ***/
+
+/* Il existe deux modes possibles pour visualiser les liens entre les speechs et les paragraphes :
+	-mode Line : Les liens sont affichés en dur, sous la forme de lignes reliant les éléments
+	-mode Opacity : Les éléments ont une opacité faible, et les liens sont visualisés indirectement, par la mise en valeur des éléments liés entre eux (voir highlight.js)
+*/
+
+
+/* Passe au mode actuellement non sélectionné */
 function changeMode()
 {
 	if(opacity)
@@ -6,6 +15,10 @@ function changeMode()
 		modeOpacity();
 }
 
+/* Passe au mode Line 
+	-Remet tous les éléments à une opacité de 1
+	-Affiche les liens
+*/
 function modeLine()
 {	
 	svg.selectAll(".speech")
@@ -28,6 +41,11 @@ function modeLine()
 	highlightTriplet({"data-selected" : "true"});
 }
 
+/* Passe au mode Opacity
+	-Met tous les éléments à une opacité de 0.1
+	-Cache les liens
+	-Dans ce mode, les paragraphes ont une couleur de remplissage de plus en plus foncés selon leurs similarités avec les speechs (voir similarity2color dans utils.js)
+*/
 function modeOpacity()
 {
 	$(".speech")
