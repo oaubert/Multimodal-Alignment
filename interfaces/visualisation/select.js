@@ -68,25 +68,7 @@ function selectSpeech(idSpeech)
 	return string;
 }
 
-function selectLink(nbLink, seuil)
-{
-	$(".link").attr("data-affiche", "off");
 
-	for(i = 0; i < nbSpeech; i++)
-	{
-		$(".link[data-idspeech=\"" + i + "\"]:lt(" + nbLink + ")")
-			.filter(function(){
-				return parseFloat($(this).data("similarite")) >= seuil;})
-			.attr("data-affiche", "on");
-	}
-
-	$(".paragraphe").attr("data-color", function(){return similarity2color(moyenneSimilarite($(this).attr("data-id")));});
-
-	if(!opacity)
-		afficheLink();
-	else
-		$(".paragraphe").attr("fill", function(){return $(this).attr("data-color");});
-}
 
 function selectKeyword(element)
 {
