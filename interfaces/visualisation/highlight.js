@@ -49,7 +49,7 @@ function highlightLink(id)
 	}
 }
 
-/* Met en valeur tout les éléments accepté par le filtre passé en paramètre (voir la fonction getTripet, dans utils.js)*/
+/* Met en valeur tous les éléments acceptés par le filtre passé en paramètre (voir la fonction getTripet, dans utils.js)*/
 function highlightTriplet(filtre)
 {
 	triplets = getTriplet(filtre);
