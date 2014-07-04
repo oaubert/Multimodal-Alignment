@@ -1,3 +1,6 @@
+/*** Fonctions utiles ***/
+
+/* Affiche les liens sélectionné d'après les seuils (voir selectLink) */
 function afficheLink()
 {
 	$(".link").css("display", "none");
@@ -7,6 +10,9 @@ function afficheLink()
 
 }
 
+/* Sélectionne les liens d'après les seuils saisies avec des slides (voir visualisation.php, la div contrôle) 
+	Seul ces liens seront affichés par afficheLink et seront pris en compte lors de la mise en valeur et de la sélection des éléments (voir highlight.js et select.js)
+*/
 function selectLink(nbLink, seuil)
 {
 	$(".link").attr("data-affiche", "off");
@@ -28,8 +34,10 @@ function selectLink(nbLink, seuil)
 }
 
 
-
-
+/* Renvoie tous les éléments qui valide le filtre passé en paramètre
+	Le filtre est un dictionnaire de la forme attribut : valeur, et s'applique sur les liens
+	On va garder tous les liens affichable (voir selectLink) dont les attributs donnés dans le filtre ont la bonne valeur associée, et ont renverra tous ces liens, avec leurs speechs et paragraphes correspondant
+*/
 function getTriplet(filtre)
 {
 	var links = $(".link[data-affiche=\"on\"]")
@@ -57,9 +65,7 @@ function getTriplet(filtre)
 }
 
 
-
-
-
+/* Calcule la moyenne de similarité d'un paragraphe avec tous les speechs auquel il est relié (pour les liens sélectionné, voir selectLink) */
 function moyenneSimilarite(idParagraphe)
 {
 	var links = $(".link[data-affiche=\"on\"][data-idparagraphe=\"" + idParagraphe + "\"]");
@@ -76,7 +82,10 @@ function moyenneSimilarite(idParagraphe)
 		return somme/links.length;
 }
 
-
+/* Renvoie une couleur (plus ou moins foncée) selon la valeur de tfidf d'un mot
+	On utilise une échelle allant de zéro au tfidf maximum de tous les mots de tous les documents
+	La plupart des tfidfs sont très faible, et très peu sont dans la moitié supérieure, on a donc une échelle progressive
+*/
 function colorTfidf(value)
 {
 	var part = tfidf_max/10;
@@ -103,25 +112,12 @@ function colorTfidf(value)
 
 }
 
+
+/* Renvoie une couleur selon la valeur de similarité correspondante 
+	L'échelle va de 0 à 1
+*/
 function similarity2color (similarity) {
    // Convert a [0..1] value into a color between 0xddd and 0x777
 	s = Math.floor((0x77 + (0xdd - 0x77) * (1 - similarity))).toString(16);
  	return "#" + s + s + s;
-
-	//return "#" + Math.floor(1911 + (3549 - 1911) * (1-similarity)).toString(16);
-
-	/*var color;
-
-	if(similarity > 15)
-		color = "#777";
-	else if(similarity > 10)
-		color = "#999";
-	else if(similarity > 5)
-		color = "#bbb";
-	else if(similarity > 0)
-		color = "#ddd";
-	else
-		color = "#eee";
-
-	return color;*/
 }
