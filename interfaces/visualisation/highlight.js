@@ -1,3 +1,12 @@
+/*** Fonctions permettant la mise en valeur (highlight) des éléments visualisés ***/
+
+/* La façon de mettre en valeur dépend du mode utilisé, Line ou Opacity*/
+
+
+/* Met en valeur un paragraphe
+	-mode Line : il est encadré en rouge (au lieu de vert)
+	-mode Opacity : il passe à une opacité de 1, au lieu de 0.1
+*/
 function highlightParagraphe(id)
 {
 	if(opacity)
@@ -11,6 +20,10 @@ function highlightParagraphe(id)
 	}
 }
 
+/* Met en valeur un speech
+	-mode Line : il devient plus foncé
+	-mode Opacity : il passe à une opacité de 1, au lieu de 0.1
+*/
 function highlightSpeech(id)
 {
 	if(opacity)
@@ -24,6 +37,10 @@ function highlightSpeech(id)
 	}
 }
 
+/* Met en valeur un lien
+	-mode Line : il devient plus foncé
+	-mode Opacity : rien, les liens ne sont pas directement affichés dans ce mode
+*/
 function highlightLink(id)
 {
 	if(!opacity)
@@ -32,6 +49,7 @@ function highlightLink(id)
 	}
 }
 
+/* Met en valeur tout les éléments accepté par le filtre passé en paramètre (voir la fonction getTripet, dans utils.js)*/
 function highlightTriplet(filtre)
 {
 	triplets = getTriplet(filtre);
@@ -47,6 +65,8 @@ function highlightTriplet(filtre)
 	}
 }
 
+/* Enlève la mise en valeur de tous les éléments (qui ne sont pas sélectionnés, voir select.js)
+*/
 function unhighlightTriplet()
 {
 	if(opacity)
@@ -65,12 +85,18 @@ function unhighlightTriplet()
 	}
 }
 
+/* Met en valeur un lemme
+	-Lorsqu'on passe la souris sur un mot (voir select.js), on va mettre en valeur tous les mots qui ont le même lemme (et donc considérés comme les mêmes pour les mesures de similarité)
+	-On met en valeur les mots dans les textes, mais aussi dans les listes de matchingWords
+	-Le mot va devenir rouge, au lieu de noir
+*/
 function highlightWord(lemme)
 {
 	$(".keyword[data-lemme=\"" + lemme + "\"]").css("color", "red");
 	$(".matchingWords[data-lemme=\"" + lemme + "\"]").css("color", "red");
 }
 
+/* Enlève la mise en valeur d'un lemme*/
 function unhighlightWord(lemme)
 {
 	$(".keyword[data-lemme=\"" + lemme + "\"]").css("color", "black");
