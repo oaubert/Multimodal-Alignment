@@ -13,6 +13,10 @@
 		<script type="text/javascript" src="../../js/d3/d3.min.js"></script>
 		<script type="text/javascript" src="../../js/jquery/js/jquery-1.10.2.js"></script>
 		<script type="text/javascript" src="../../js/jquery/js/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="highlight.js"></script>
+		<script type="text/javascript" src="select.js"></script>
+		<script type="text/javascript" src="mode.js"></script>
+		<script type="text/javascript" src="utils.js"></script>
 	</head>
 	<body>
 		<!-- Menu -->
