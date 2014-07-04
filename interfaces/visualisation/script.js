@@ -283,18 +283,21 @@ function createLink(group)
 }
 
 
+/** Fonction pour le calcul des positions dans la page **/
 
+//Calcule la coordonnée x dans la timeline selon le temps passé en paramètre et la durée totale de la vidéo
 function coordonneeTimeline(time)
 {
 	return posTimeline.x + time*posTimeline.width / dureeSpeech;
 }
 
-
+//Calcule le centre entre deux valeurs
 function center(a, b)
 {
 	return (a + b) / 2;
 }
 
+//Calcule la position en pixel dans une page à partir du position en pourcentage
 function getPoint(page, pourcentX, pourcentY)
 {
 	var x = page.x + pourcentX*page.width/100;
@@ -302,7 +305,4 @@ function getPoint(page, pourcentX, pourcentY)
 
 	return {"x" : x, "y" : y};
 }
-
-
-
 
