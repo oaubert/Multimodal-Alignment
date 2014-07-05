@@ -1,3 +1,8 @@
+/*** Feuille de style pour l'affichage des informations (lors de la sélection) ***/
+
+
+/** Paragraphes **/
+
 #info_paragraphe
 {
 	position:absolute;
@@ -7,6 +12,7 @@
 	border:solid red 1px;
 }
 
+/* Encadrement des paragraphes */
 #info_paragraphe>div
 {
 	border-bottom:solid red 1px;
@@ -23,6 +29,9 @@
 	border:none;
 }
 
+
+/** Speechs **/
+
 #info_speech
 {
 	position:absolute;
@@ -32,6 +41,8 @@
 	border:solid red 1px;
 }
 
+/** Mise en valeurs **/
+
 #highligh
 {
 	position:absolute;
@@ -40,6 +51,9 @@
 	width:25%;
 	border:solid red 1px;
 }
+
+
+/** Mots **/
 
 .keyword
 {
