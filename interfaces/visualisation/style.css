@@ -14,9 +14,16 @@ input[type="range"]
 	width:350px;
 }
 
+
+/* On cache les images des pagesde l'article, pour accélérer le chargement (peut-être désactivé) */
+
 image {
 	display: none;
 }
+
+
+
+/* On cache les données brutes */
 
 #data_pdf
 {
