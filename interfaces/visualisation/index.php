@@ -12,6 +12,12 @@
 				$chemin="../data";
 
 				$it = new FilesystemIterator($chemin);
+
+				/** Liste l'ensemble des conférences disponibles : une par dossier présent dans ../data/ 
+
+						Le nom de la conférence est le nom du dossier
+						Dans chaque dossier, il peut y avoir un fichier "description" qui contient une phrase de description qui sera affiché à coté
+				**/
 	 
 				foreach($it as $fileinfo)
 				{
