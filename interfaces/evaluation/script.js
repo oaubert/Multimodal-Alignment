@@ -42,3 +42,13 @@ function replay()
 	video.play();
 	buttonPlay.onclick = playPause;
 }
+
+function afficherParagraphe(n, baliseSimilarite, baliseTexte)
+{
+	var link = dataLink[n];
+	document.getElementById(baliseSimilarite).innerHTML = link.dataset.similarite;
+
+	var paragraphe = $(".data_paragraphe[data-id=\"" + link.dataset.idparagraphe + "\"]");
+
+	document.getElementById(baliseTexte).innerHTML = paragraphe.html();	
+}

@@ -21,7 +21,7 @@
 
 		$_SESSION['slide_id'] = $_SESSION['slide_id'] + 1;
 
-		header("Location:index.php?id=" . $_SESSION['slide_id']);
+		header("Location:index.php?document=" . $_SESSION['document'] . "&id=" . $_SESSION['slide_id']);
 	}
 	else
 	{

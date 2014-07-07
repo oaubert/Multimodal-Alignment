@@ -11,3 +11,8 @@
 {
 	margin:10px;
 }
+
+#data_pdf, #data_transcript, #data_alignement
+{
+	display:none;
+}
