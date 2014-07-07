@@ -16,6 +16,8 @@
     </head>
 	<body onload="afficher();">    
 
+		<!-- Données -->
+
 		<div id="data">
 			<?php
 				include($chemin . "paragraphe.html");
@@ -25,26 +27,45 @@
 			?>
 		</div>
 
+
+		<!-- Initialisation des variables javascript -->
+
 		<script type="text/javascript">
 			var nbSpeech = d3.select("#data_transcript")[0][0].dataset.number;
 			var chemin = "<?php echo $chemin ?>";
 		</script>
 
-		<video class="drag" width="45%" id="video" height="100%" controls="controls">
-			<source src="<?php echo $chemin ?>video.webm">
-			<code>video</code>
-		</video>
 
-		<div id="controls">
-			<button type="button" id="play" onclick="playPause()">Play</button>
-			<button type="button" id="replay" onclick="replay()">Replay</button>
+		<div id="video_div">
+
+			<!-- Vidéo -->
+
+			<video class="drag" width="45%" id="video" height="100%" controls="controls">
+				<source src="<?php echo $chemin ?>video.webm">
+				<code>video</code>
+			</video>
+
+
+			<!-- Contrôles -->
+
+			<div id="controls">
+				<button type="button" id="play" onclick="playPause()">Play</button>
+				<button type="button" id="replay" onclick="replay()">Replay</button>
+			</div>
+
 		</div>
+
+
+		<!-- Les trois meilleurs paragraphes -->
 
 		<div id="paragraphe">
 			Paragraphe 1 : &nbsp;&nbsp;&nbsp; <span id="similarite1"></span><div id="texte1"></div>
 			Paragraphe 2 : &nbsp;&nbsp;&nbsp; <span id="similarite2"></span><div id="texte2"></div>
 			Paragraphe 3 : &nbsp;&nbsp;&nbsp; <span id="similarite3"></span><div id="texte3"></div>
 		</div>
+
+
+		<!-- Formulaire d'évaluation -->
 
 		<form action="" method="post">
 			<div id="formulaire">
