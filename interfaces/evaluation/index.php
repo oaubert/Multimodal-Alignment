@@ -1,17 +1,10 @@
 <!DOCTYPE html>
 <?php 
-	session_start();
-
-	$_SESSION['document'] = $_GET['document'];
-	$_SESSION['slide_id'] = $_GET['id'];
-
 	$chemin = "../data/" . $_GET['document'] . '/';
-
-	$slide_id = $_GET['id'];
 ?>
 <html>
     <head>
-        <title>Test Alignement Local - <?php echo $slide_id; ?></title>
+        <title>Test Alignement Local</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<link href="style.css" rel="stylesheet" type="text/css">
 		<script src="script.js"></script>
@@ -20,7 +13,7 @@
 		<script type="text/javascript" src="../../js/jquery/js/jquery-1.10.2.js"></script>
 		<script type="text/javascript" src="../../js/jquery/js/jquery-ui.min.js"></script>
     </head>
-	<body onload="afficher(id);">    
+	<body onload="afficher();">    
 
 		<div id="data">
 			<?php
@@ -33,13 +26,6 @@
 
 		<script type="text/javascript">
 			var nbSpeech = d3.select("#data_transcript")[0][0].dataset.number;
-			var id = "<?php echo $slide_id ?>";
-
-			if(id >= nbSpeech)
-			{
-				location.href="fini.php";
-			}
-
 			var chemin = "<?php echo $chemin ?>";
 		</script>
 
@@ -59,7 +45,7 @@
 			Paragraphe 3 : &nbsp;&nbsp;&nbsp; <span id="similarite3"></span><div id="texte3"></div>
 		</div>
 
-		<form action="traitement.php" method="post">
+		<form action="" method="post">
 			<div id="formulaire">
 				<div id="div_p1">
 					Paragraphe 1 : 
@@ -77,8 +63,8 @@
 					<label for="p3_Non">Non</label><input id="p3_Non" type="radio" name="p3" value="Non" required="required"/>
 				</div>
 
-				<input type="submit" value="Valider" name="valider" />
-				<input type="button" value="Reset" onclick="location.href='reset.php'"); />
+				<input type="button" value="Valider" name="valider" onclick="resultat();"/>
+				<input type="button" value="Reset" onclick="resetEvaluation();" />
 			</div>
 		</form>			
 	</body>
