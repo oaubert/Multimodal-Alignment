@@ -22,3 +22,8 @@ input[type="range"]
 image {
 	display: inline;
 }
+
+#data_pdf, #data_pagePdf
+{
+	display:none;
+}

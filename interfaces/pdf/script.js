@@ -9,9 +9,9 @@ var svg = d3.select("#visualisation")
 
 		var largeurPage = svg.attr("width") / 2
 		
-		var d = dataPage[num_page];
+		var d = dataPage[0];
 
-		dataPage_traite[0] = {'id' : d.id, "src" : d.src, "x" : 10, "y" : 10, "width" : largeurPage, "height" : d.height * (largeurPage / d.width)}
+		dataPage_traite[0] = {'id' : d.id, "number" : d.dataset.id, "src" : chemin + "img/PICTURE_" + d.dataset.numero + ".jpg", "x" : 10, "y" : 10, "width" : largeurPage, "height" : d.dataset.hauteur * (largeurPage / d.dataset.largeur)}
 
 		if(svg.attr("height") < dataPage_traite[0].y + dataPage_traite[0].height)
 		{
@@ -36,14 +36,14 @@ var svg = d3.select("#visualisation")
 		for(i = 0; i < dataParagraphe.length; i++)
 		{
 			var d = dataParagraphe[i];
-			var point = new Array();
+			var point = new Array()
 			
-			for(j = 0; j < 4; j++)
-			{
-				point[j] = getPoint(dataPage_traite[0], d.data[j].x, d.data[j].y)
-			}
+			point[0] = getPoint(dataPage_traite[d.dataset.idpage], d.dataset.left, d.dataset.top)						//en haut à gauche
+			point[1] = getPoint(dataPage_traite[d.dataset.idpage], (100 - d.dataset.right), d.dataset.top)				//en haut à droite
+			point[2] = getPoint(dataPage_traite[d.dataset.idpage], (100 - d.dataset.right), (100 - d.dataset.bottom))	//en bas à droite
+			point[3] = getPoint(dataPage_traite[d.dataset.idpage], d.dataset.left, (100 - d.dataset.bottom))			//en bas à gauche
 
-			dataParagraphe_traite[i] = {'id' : d.id, "page" : d.page, "data" : point}
+			dataParagraphe_traite[i] = {'id' : d.id, "page" : d.dataset.idPage, "point" : point, "number" : d.dataset.id}
 		}
 	
 
@@ -61,22 +61,23 @@ function createParagraphe()
 							.enter()
 								.append("polygon")
 								.attr("class", "paragraphe")
-								.attr("id", function(d){return "paragraphe_" + d.id;})
-								.attr("number", function(d){return d.id;})
+								.attr("id", function(d){return "svg_" + d.id;})
+								.attr("data-id", function(d){return d.number;})
+								.attr("data-selected", "false")
 								.attr("points", function(d)
 													{
 														var res = "";
 														for(i = 0; i < 4; i++)
 														{
-															res = [res, [d.data[i].x, d.data[i].y].join(",")].join(" ");
+															res = [res, [d.point[i].x, d.point[i].y].join(",")].join(" ");
 														}
 														
 														return res; 
 													})
 								.attr("stroke-width", 1)
 								.attr("stroke", "green")
-								.attr("fill", "transparent")
-								.attr("fill-opacity", 0.5);
+								.attr("fill", "#fff")
+								.attr("fill-opacity", 0.5)
 
 	return paragraphe;
 }
