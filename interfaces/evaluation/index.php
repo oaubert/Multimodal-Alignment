@@ -7,6 +7,7 @@
         <title>Test Alignement Local</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<link href="style.css" rel="stylesheet" type="text/css">
+		<script src="video.js"></script>
 		<script src="script.js"></script>
 		<link rel="stylesheet" type="text/css" href="../../js/jquery/css/ui-lightness/jquery-ui-1.10.4.custom.min.css">
 		<script type="text/javascript" src="../../js/d3/d3.min.js"></script>
