@@ -20,7 +20,7 @@
 		<script type="text/javascript" src="../../js/jquery/js/jquery-1.10.2.js"></script>
 		<script type="text/javascript" src="../../js/jquery/js/jquery-ui.min.js"></script>
     </head>
-	<body onload="initialisation(debut, fin);">    
+	<body onload="afficher(id);">    
 
 		<div id="data">
 			<?php
@@ -40,14 +40,7 @@
 				location.href="fini.php";
 			}
 
-			var dataSpeech = d3.selectAll(".data_speech[data-id=\"" + id + "\"]")[0];
-			var dataLink = d3.selectAll(".data_link[data-idspeech=\"" + id + "\"]")[0];
-
-			var debut = dataSpeech[0].dataset.begin;
-			var fin = dataSpeech[0].dataset.end;
-
 			var chemin = "<?php echo $chemin ?>";
-			var dureeSpeech = d3.select("#data_transcript")[0][0].dataset.duree;
 		</script>
 
 		<video class="drag" width="45%" id="video" height="100%" controls="controls">
@@ -88,11 +81,5 @@
 				<input type="button" value="Reset" onclick="location.href='reset.php'"); />
 			</div>
 		</form>			
-
-		<script type="text/javascript">
-			afficherParagraphe(0, "similarite1", "texte1");
-			afficherParagraphe(1, "similarite2", "texte2");
-			afficherParagraphe(2, "similarite3", "texte3");
-		</script>
 	</body>
 </html>

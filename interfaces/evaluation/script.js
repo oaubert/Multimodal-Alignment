@@ -1,5 +1,7 @@
 var glob_deb;
 var glob_fin;
+var dataSpeech;
+var dataLink;
 
 function initialisation(debut, fin)
 {
@@ -51,4 +53,20 @@ function afficherParagraphe(n, baliseSimilarite, baliseTexte)
 	var paragraphe = $(".data_paragraphe[data-id=\"" + link.dataset.idparagraphe + "\"]");
 
 	document.getElementById(baliseTexte).innerHTML = paragraphe.html();	
+}
+
+
+function afficher(idSpeech)
+{
+	dataSpeech = d3.selectAll(".data_speech[data-id=\"" + id + "\"]")[0];
+	dataLink = d3.selectAll(".data_link[data-idspeech=\"" + id + "\"]")[0];
+
+	var debut = dataSpeech[0].dataset.begin;
+	var fin = dataSpeech[0].dataset.end;
+
+	afficherParagraphe(0, "similarite1", "texte1");
+	afficherParagraphe(1, "similarite2", "texte2");
+	afficherParagraphe(2, "similarite3", "texte3");
+
+	initialisation(debut, fin);
 }
