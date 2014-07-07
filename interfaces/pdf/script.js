@@ -98,37 +98,3 @@ function getPoint(page, pourcentX, pourcentY)
 	return {"x" : x, "y" : y};
 }
 
-
-
-/*Draw the line
-var line = svg.append("line")
-                         .attr("x1", 5)
-                         .attr("y1", 5)
-                         .attr("x2", 50)
-                         .attr("y2", 50)
-                         .attr("stroke-width", 2)
-                         .attr("stroke", "black");
-
-var line = svg.append("line")
-                         .attr("x1", 500)
-                         .attr("y1", 5)
-                         .attr("x2", 500)
-                         .attr("y2", 200)
-                         .attr("stroke-width", 1)
-                         .attr("stroke", "green");
-
-var line = svg.append("line")
-                         .attr("x1", 100)
-                         .attr("y1", 5)
-                         .attr("x2", 100)
-                         .attr("y2", 200)
-                         .attr("stroke-width", 1)
-                         .attr("stroke", "green");
-
-var curve = svg.append("path")
-				.attr("d", "M 50 50   C 500 100 100 150 200 200")
-				.attr("stroke", "blue")
-				.attr("stroke-width", 5)
-				.attr("fill", "none");
-
-*/
