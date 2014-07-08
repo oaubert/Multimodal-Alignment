@@ -24,42 +24,48 @@
 			?>
 		</div>
 
-		<div id="transcript">
-			Transcript <span id="transcript_id"></span>
-			<div id="info_transcript">
-				Moyenne : <span id="moyenne"></span><br />
-				Écart-type : <span id="ecart_type"></span><br />
-				Pourcentage de zéro : <span id="zero"></span>
-			</div>
-			<div id="text_transcript"></div>
+		<div id="controle">
+			<input type="button" value="Résultat" id="resultat" />
 		</div>
 
-		<div id="paragraphe">
-			<div id="paragraphe1" onclick="selectParagraphe(1)">
-				Paragraphe 1 : 
-					<div id="info_paragraphe1">
-						Similarité : <span id="similarite1"></span><br />
-						Matching words : <span id="matching_words1"></span>
-					</div>
-					<div id="texte1"></div>
+		<div id="affichage">
+			<div id="transcript">
+				Transcript <span id="transcript_id"></span>
+				<div id="info_transcript">
+					Moyenne : <span id="moyenne"></span><br />
+					Écart-type : <span id="ecart_type"></span><br />
+					Pourcentage de zéro : <span id="zero"></span>
+				</div>
+				<div id="text_transcript"></div>
 			</div>
-			<div id="paragraphe2" onclick="selectParagraphe(2)">
-				Paragraphe 2 : 
-					<div id="info_paragraphe2">
-						Similarité : <span id="similarite2"></span><br />
-						Matching words : <span id="matching_words2"></span>
-					</div>
-					<div id="texte2"></div>
-			</div>
-			<div id="paragraphe3" onclick="selectParagraphe(3)">
-				Paragraphe 3 : 
-					<div id="info_paragraphe3">
-						Similarité : <span id="similarite3"></span><br />
-						Matching words : <span id="matching_words3"></span>
-					</div>
-					<div id="texte3"></div>
-			</div>
-		</div>	
+
+			<div id="paragraphe">
+				<div id="paragraphe1" onclick="selectParagraphe(1)">
+					Paragraphe 1 : 
+						<div id="info_paragraphe1">
+							Similarité : <span id="similarite1"></span><br />
+							Matching words : <span id="matching_words1"></span>
+						</div>
+						<div id="texte1"></div>
+				</div>
+				<div id="paragraphe2" onclick="selectParagraphe(2)">
+					Paragraphe 2 : 
+						<div id="info_paragraphe2">
+							Similarité : <span id="similarite2"></span><br />
+							Matching words : <span id="matching_words2"></span>
+						</div>
+						<div id="texte2"></div>
+				</div>
+				<div id="paragraphe3" onclick="selectParagraphe(3)">
+					Paragraphe 3 : 
+						<div id="info_paragraphe3">
+							Similarité : <span id="similarite3"></span><br />
+							Matching words : <span id="matching_words3"></span>
+						</div>
+						<div id="texte3"></div>
+				</div>
+			</div>	
+		</div>
 
 		<script type="text/javascript">
 			var idSpeech = 0;
