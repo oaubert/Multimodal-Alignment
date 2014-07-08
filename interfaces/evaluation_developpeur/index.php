@@ -21,7 +21,6 @@
 		<script type="text/javascript" src="../../js/d3/d3.min.js"></script>
 		<script type="text/javascript" src="../../js/jquery/js/jquery-1.10.2.js"></script>
 		<script type="text/javascript" src="../../js/jquery/js/jquery-ui.min.js"></script>
-		<script type="text/javascript" src="../evaluation/script.js"></script>
     </head>
     <body>
 
@@ -40,6 +39,14 @@
 			var chemin = "<?php echo $chemin ?>";
 			var dataSpeech = d3.selectAll(".data_speech[data-id=\"" + idSpeech + "\"]")[0];
 			var dataLink = d3.selectAll(".data_link[data-idspeech=\"" + idSpeech + "\"]")[0];
+
+			var link1 = dataLink[0];
+			var link2 = dataLink[1];
+			var link3 = dataLink[2];
+
+			var paragraphe1 = $(".data_paragraphe[data-id=\"" + link1.dataset.idparagraphe + "\"]");
+			var paragraphe2 = $(".data_paragraphe[data-id=\"" + link2.dataset.idparagraphe + "\"]");
+			var paragraphe3 = $(".data_paragraphe[data-id=\"" + link3.dataset.idparagraphe + "\"]");
 		</script>
 
 		<div id="transcript">
@@ -53,9 +60,24 @@
 		</div>
 
 		<div id="paragraphe">
-			Paragraphe 1 : &nbsp;&nbsp;&nbsp; <span id="similarite1"></span><div id="texte1"></div>
-			Paragraphe 2 : &nbsp;&nbsp;&nbsp; <span id="similarite2"></span><div id="texte2"></div>
-			Paragraphe 3 : &nbsp;&nbsp;&nbsp; <span id="similarite3"></span><div id="texte3"></div>
+			Paragraphe 1 : 
+				<div id="info_paragraphe1">
+					Similarité : <span id="similarite1"></span><br />
+					Matching words : <span id="matching_words1"></span>
+				</div>
+				<div id="texte1"></div>
+			Paragraphe 2 : 
+				<div id="info_paragraphe2">
+					Similarité : <span id="similarite2"></span><br />
+					Matching words : <span id="matching_words2"></span>
+				</div>
+				<div id="texte2"></div>
+			Paragraphe 3 : 
+				<div id="info_paragraphe3">
+					Similarité : <span id="similarite3"></span><br />
+					Matching words : <span id="matching_words3"></span>
+				</div>
+				<div id="texte3"></div>
 		</div>	
 
 		<script type="text/javascript">
@@ -64,9 +86,17 @@
 			$("#zero").html(dataSpeech[0].dataset.zero);
 			$("#text_transcript").html(dataSpeech[0].innerHTML);
 
-			afficherParagraphe(0, "similarite1", "texte1");
-			afficherParagraphe(1, "similarite2", "texte2");
-			afficherParagraphe(2, "similarite3", "texte3"); 
+			$("#similarite1").html(link1.dataset.similarite);
+			$("#matching_words1").html(link1.innerHTML);
+			$("#texte1").html(paragraphe1.html());
+
+			$("#similarite2").html(link2.dataset.similarite);
+			$("#matching_words2").html(link2.innerHTML);
+			$("#texte2").html(paragraphe2.html());
+
+			$("#similarite3").html(link3.dataset.similarite);
+			$("#matching_words3").html(link3.innerHTML);
+			$("#texte3").html(paragraphe3.html());
 		</script>		
 	</body>
 </html>
