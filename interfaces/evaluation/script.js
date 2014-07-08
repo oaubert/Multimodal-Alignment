@@ -30,7 +30,7 @@ function afficherParagraphe(n, baliseSimilarite, baliseTexte)
 
 
 /* Affiche l'interface pour le slide actuel
-	-Vérifie que le slide est correct, sinon redirige vers la page fini.php
+	-Vérifie que le slide est correct, sinon affiche le résultat sans changer de slide
 	-Vérifie que les radio button ne sont pas déjà coché
 	-Sélectionne les données du speech actuel et des liens correspondants
 	-Affiche les trois meilleurs paragraphes
@@ -40,22 +40,24 @@ function afficher()
 {
 	if(idSpeech >= nbSpeech)
 	{
-		location.href="fini.php";
+		afficherResultat();
 	}
+	else
+	{
+		$("input[type='radio']").prop("checked", false);
 
-	$("input[type='radio']").prop("checked", false);
+		dataSpeech = d3.selectAll(".data_speech[data-id=\"" + idSpeech + "\"]")[0];
+		dataLink = d3.selectAll(".data_link[data-idspeech=\"" + idSpeech + "\"]")[0];
 
-	dataSpeech = d3.selectAll(".data_speech[data-id=\"" + idSpeech + "\"]")[0];
-	dataLink = d3.selectAll(".data_link[data-idspeech=\"" + idSpeech + "\"]")[0];
+		var debut = dataSpeech[0].dataset.begin;
+		var fin = dataSpeech[0].dataset.end;
 
-	var debut = dataSpeech[0].dataset.begin;
-	var fin = dataSpeech[0].dataset.end;
+		afficherParagraphe(0, "similarite1", "texte1");
+		afficherParagraphe(1, "similarite2", "texte2");
+		afficherParagraphe(2, "similarite3", "texte3");
 
-	afficherParagraphe(0, "similarite1", "texte1");
-	afficherParagraphe(1, "similarite2", "texte2");
-	afficherParagraphe(2, "similarite3", "texte3");
-
-	initialisation(debut, fin);
+		initialisation(debut, fin);
+	}
 }
 
 /* Enregistre l'évaluation du speech actuel et passe au suivant */
