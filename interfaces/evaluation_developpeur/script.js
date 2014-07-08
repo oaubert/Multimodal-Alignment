@@ -9,20 +9,20 @@ function afficherParagraphe(n)
 	$("#similarite" + n).html(link.dataset.similarite);
 	$("#matching_words" + n).html(link.innerHTML);
 	$("#texte" + n).html(paragraphe.html());
+}
 
-	$("#paragraphe" + n).on("click", function()
-										{
-											idSpeech = idSpeech +1; 
+function selectParagraphe()
+{
+	idSpeech = idSpeech + 1; 
 
-											if(idSpeech >= nbSpeech)
-											{
-												alert("fini");
-											}
-											else
-											{
-												afficherTranscript(idSpeech);
-											}
-										});
+	if(idSpeech >= nbSpeech)
+	{
+		alert("fini");
+	}
+	else
+	{
+		afficherTranscript(idSpeech);
+	}
 }
 
 function afficherTranscript(id)
