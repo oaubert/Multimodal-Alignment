@@ -16,14 +16,14 @@ function selectParagraphe(numero)
 {
 	res[idSpeech] = numero;
 
-	idSpeech = idSpeech + 1; 
-
-	if(idSpeech >= nbSpeech)
+	if(idSpeech + 1 >= nbSpeech)
 	{
 		afficherResultat();
 	}
 	else
 	{
+		idSpeech = idSpeech + 1; 
+
 		afficherTranscript(idSpeech);
 	}
 }
