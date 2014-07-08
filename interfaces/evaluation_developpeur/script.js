@@ -56,3 +56,10 @@ function afficherResultat()
 
 	alert(string);
 }
+
+function resetEvaluation()
+{
+	res = {};
+	idSpeech = 0;
+	afficherTranscript(idSpeech);
+}

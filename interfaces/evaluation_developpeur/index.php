@@ -26,6 +26,7 @@
 
 		<div id="controle">
 			<input type="button" value="Afficher le résultat" id="resultat" onclick="afficherResultat();"/>
+			<input type="button" value="Reset" id="reset" onclick="resetEvaluation();"/>
 		</div>
 
 		<div id="affichage">
