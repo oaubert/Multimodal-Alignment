@@ -43,8 +43,13 @@
 		</script>
 
 		<div id="transcript">
-			Transcript - 
-					
+			Transcript 
+			<div id="info_transcript">
+				Moyenne : <span id="moyenne"></span><br />
+				Écart-type : <span id="ecart_type"></span><br />
+				Pourcentage de zéro : <span id="zero"></span>
+			</div>
+			<div id="text_transcript"></div>
 		</div>
 
 		<div id="paragraphe">
@@ -54,7 +59,10 @@
 		</div>	
 
 		<script type="text/javascript">
-			$("#transcript").html("Transcript - Moyenne : " + dataSpeech[0].dataset.moyenne + ", Écart-type : " + dataSpeech[0].dataset.ecart_type + ", Pourcentage de zéro : " + dataSpeech[0].dataset.zero + "<br />" + dataSpeech[0].innerHTML);
+			$("#moyenne").html(dataSpeech[0].dataset.moyenne);
+			$("#ecart_type").html(dataSpeech[0].dataset.ecart_type);
+			$("#zero").html(dataSpeech[0].dataset.zero);
+			$("#text_transcript").html(dataSpeech[0].innerHTML);
 
 			afficherParagraphe(0, "similarite1", "texte1");
 			afficherParagraphe(1, "similarite2", "texte2");
