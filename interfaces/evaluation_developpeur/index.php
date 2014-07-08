@@ -25,7 +25,7 @@
 		</div>
 
 		<div id="transcript">
-			Transcript 
+			Transcript <span id="transcript_id"></span>
 			<div id="info_transcript">
 				Moyenne : <span id="moyenne"></span><br />
 				Écart-type : <span id="ecart_type"></span><br />

@@ -30,6 +30,7 @@ function afficherTranscript(id)
 	dataSpeech = d3.selectAll(".data_speech[data-id=\"" + id + "\"]")[0];
 	dataLink = d3.selectAll(".data_link[data-idspeech=\"" + id + "\"]")[0];
 
+	$("#transcript_id").html(dataSpeech[0].dataset.id);
 	$("#moyenne").html(dataSpeech[0].dataset.moyenne);
 	$("#ecart_type").html(dataSpeech[0].dataset.ecart_type);
 	$("#zero").html(dataSpeech[0].dataset.zero);
