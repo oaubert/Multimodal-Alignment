@@ -1,5 +1,6 @@
 var dataSpeech;
 var dataLink;
+var res = {}
 
 function afficherParagraphe(n)
 {
@@ -11,8 +12,10 @@ function afficherParagraphe(n)
 	$("#texte" + n).html(paragraphe.html());
 }
 
-function selectParagraphe()
+function selectParagraphe(numero)
 {
+	res[idSpeech] = numero;
+
 	idSpeech = idSpeech + 1; 
 
 	if(idSpeech >= nbSpeech)

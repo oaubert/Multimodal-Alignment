@@ -35,7 +35,7 @@
 		</div>
 
 		<div id="paragraphe">
-			<div id="paragraphe1" onclick="selectParagraphe()">
+			<div id="paragraphe1" onclick="selectParagraphe(1)">
 				Paragraphe 1 : 
 					<div id="info_paragraphe1">
 						Similarité : <span id="similarite1"></span><br />
@@ -43,7 +43,7 @@
 					</div>
 					<div id="texte1"></div>
 			</div>
-			<div id="paragraphe2" onclick="selectParagraphe()">
+			<div id="paragraphe2" onclick="selectParagraphe(2)">
 				Paragraphe 2 : 
 					<div id="info_paragraphe2">
 						Similarité : <span id="similarite2"></span><br />
@@ -51,7 +51,7 @@
 					</div>
 					<div id="texte2"></div>
 			</div>
-			<div id="paragraphe3" onclick="selectParagraphe()">
+			<div id="paragraphe3" onclick="selectParagraphe(3)">
 				Paragraphe 3 : 
 					<div id="info_paragraphe3">
 						Similarité : <span id="similarite3"></span><br />
