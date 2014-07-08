@@ -20,7 +20,7 @@ function selectParagraphe(numero)
 
 	if(idSpeech >= nbSpeech)
 	{
-		alert("fini");
+		afficherResultat();
 	}
 	else
 	{
@@ -42,4 +42,17 @@ function afficherTranscript(id)
 	afficherParagraphe(1);
 	afficherParagraphe(2);
 	afficherParagraphe(3);
+}
+
+
+function afficherResultat()
+{
+	string = "Résultat\n"
+
+	for(i in res)
+	{
+		string += "Transcript " + i + " : Paragraphe " + res[i] + "\n";
+	}
+
+	alert(string);
 }
