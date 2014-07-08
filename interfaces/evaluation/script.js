@@ -5,6 +5,8 @@
 
 	Cela permet une première évaluation des résultats.
 	Elle ne prend cependant pas en compte le fait que les paragraphes peuvent correspondre au speech, sans être les meilleurs résultats possibles.
+
+	Pour l'instant, rien n'est fait des résultats, mais ils sont exploitables avec la variable res.
 **/
 
 var dataSpeech; 	//Variable globale contenant les données sur le speech actuel
@@ -74,4 +76,17 @@ function resetEvaluation()
 	idSpeech = 0;
 
 	afficher();
+}
+
+/* Affiche les résultats dans un pop-up */
+function afficherResultat()
+{
+	string = "Résultats\n"
+
+	for(i in res)
+	{
+		string += "Speech " + i + " : " + res[i][1] + " - " + res[i][2] + " - " + res[i][3] + "\n";
+	}
+
+	alert(string);
 }

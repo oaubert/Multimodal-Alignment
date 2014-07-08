@@ -27,7 +27,6 @@
 			?>
 		</div>
 
-
 		<!-- Initialisation des variables javascript -->
 
 		<script type="text/javascript">
@@ -85,7 +84,8 @@
 					<label for="p3_Non">Non</label><input id="p3_Non" type="radio" name="p3" value="Non" required="required"/>
 				</div>
 
-				<input type="button" value="Valider" name="valider" onclick="resultat();"/>
+				<input type="button" value="Valider" name="valider" onclick="resultat();" />
+				<input type="button" value="Resultat" name="res" onclick="afficherResultat();" />
 				<input type="button" value="Reset" onclick="resetEvaluation();" />
 			</div>
 		</form>			
