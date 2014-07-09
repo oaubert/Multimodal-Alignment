@@ -1,0 +1,98 @@
+body{
+	margin:0px;
+	background-color: #5FBDCE;
+}
+
+#entete{
+	margin:0px;
+	height:20%;
+}
+
+h1{
+	text-align : center;
+	margin-top: 1%;
+	font-size: 30px;	
+	font-family: sans-serif;
+	font-weight: bold;
+	color: #153e8f
+}
+ 
+.boutons
+{
+	display: inline-block;	
+	margin-left: 2.5%;
+	background-color: #015666;
+	height: 40px;
+	width: 10%;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	color: white;
+	font-size: 25px;
+	text-align: center;
+}
+.boutons a{
+	color: white;
+	text-decoration: none;
+	font-family: sans-serif; 
+	
+}
+
+#milieu{
+	margin:auto;
+	width:95%;
+	height:38em;
+	background-color:#04859D;
+	border-radius: 0px 5px 5px 5px;
+}
+
+#video{
+	float:left;
+	width:50%;
+        margin-left: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+#texte{
+    margin-right: 5px;
+	float:right;
+	width:49%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	height:97%;
+	overflow: auto;
+}
+
+#video_controller{
+	text-align: center; 
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	border-radius : 5px;
+	width : 95%;
+	background-color: #04859D;
+	color: white;
+}
+
+#timeline {
+	margin-top : 5px;
+}
+
+#lien_pdf{
+	text-align : center;
+	margin:auto;
+	margin-top: 10px;
+	width:95%;
+	background-color:#04859D;
+	border-radius: 5px;
+}
+	
+#lien_pdf a{
+	font-family: sans-serif; 
+	font-size: 18px; 
+	color: white;
+}
+
+
+
+

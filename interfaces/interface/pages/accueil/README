@@ -1,0 +1,60 @@
+Ce dossier du site web contient la partie ou le programme Java est exécuté.
+
+L'ensemble du site web est naviguable au travers de l'interface web. On peut y accéder par le fichier acceuil.php.
+
+C'est dans le fichier upload.php que tout ce passe. Il contient un formulaire demandant à l'utilisateur les chemins de la vidéo, du PDF, du fichier xml extrait par apacheTika contenant les attributs begin et end préalablement ajoutés à la main, ainsi que l'ensemble des paramètres permettant la meilleure gestion des paragraphes (nombre de lignes par paragraphes, y'a t'il des alinéas ...).
+
+Une fois le formulaire validé, le script bash pdf.sh est exécuté à l'aide d'un shell_exec, lequel va lancer ApacheTika, PDFtoHTML, supprimer les balises inutiles des fichiers xml générés, exécuter le programme Java, supprimer les fihiers xml créés au début, puis déplacer les fihiers au bon endroit. Ensuite, l'utilisateur peut accéder à sa conférence en la choisissant sur la page d'acceuil.
+
+On peut voir la sortie du programme Java dans normal.log et les erreurs dans err.log
+
+Pour que cela fonctionne, il faut faire un certain nombre manipulations.
+
+
+-------------------------------
+1. Importer le programme Java
+
+Le programme Java doit être présent dans ce dossier sous la forme d'un jar exécutable pdf1.jar. Le .jar doit aussi contenir les libraires utilisées dans le programme (pdfView présent dans pdfRenderer.jar)
+
+
+------------------------------
+2. convertir la vidéo
+
+La vidéo donnée doit être au format MP4 ou webm (le format webm est le mieux supporté)
+
+
+------------------------------
+3. Donner les droits
+
+On ne s'est pas souciés des problèmes de sécurité car on voulait juste que cela fonctionne. On donne donc tous les droits au serveur à l'aide de la commande suivante (exécutée à la racine du site) :
+
+# sudo shown -R www-data:www-data site/
+
+--> sur mac, www:www
+
+si des problèmes de droits persistent, on donne tous les droits à toute l'arborescence
+
+# chmod -r 753 site/  (777 si cela ne suffit pas)
+
+
+-------------------------------
+4. modifier certains fichiers de configuration
+
+Si cela ne marche toujours pas, on peut essayer de modifier les fichiers comme php.ini avec les variables définissant la taille des données téléchargeables par le serveur, ...
+
+
+
+###########################################
+Les paramètres du bash
+
+Le bash doit être exécuté par le serveur avec un sertain nombre de paramètres (normalement automatiquement renseignés grâce au formulaire du site web)
+
+$1 le chemin du pdf
+$2 le chemin du dossier contenant les images
+$3 paramètre Java : corrections
+$4 paramètre Java : nombre de caractère minimum par paragraphes
+$5 paramètre Java : nombre de ligne minimum par paragraphes
+$6 paramètre Java : alinéas
+$7 paramètre Java : même police par paragraphe
+$8 paramètre Java : même police pour tous
+$9 (facultatif) : le chemin du fichier xml contenant les balises begin et end

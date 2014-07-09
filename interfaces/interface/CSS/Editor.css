@@ -1,0 +1,13 @@
+.ui-slider .ui-slider-handle
+{
+	border:none;
+	height:30px;
+	width:2px;
+	background:red;
+	margin-left:-2px;
+}
+
+td
+{
+	border:solid 1px red;
+}
