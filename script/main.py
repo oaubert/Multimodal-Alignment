@@ -58,7 +58,7 @@ class Main:
 
 	
 
-	def generateHtml(self, fileParagraphe, fileSpeech, filePage, fileAlignement):
+	def generateHtml(self, fileParagraphe, fileSpeech, filePage, fileAlignement, fileVocabulary):
 		"""Génère des fichiers html à partir de l'objet Document"""
 
 		fichier = codecs.open(fileParagraphe, 'w', "utf-8")
@@ -77,25 +77,29 @@ class Main:
 		fichier.write(self.document.generateHtmlLink())
 		fichier.close()
 
+		fichier = codecs.open(fileVocabulary, 'w', "utf-8")
+		fichier.write(self.document.generateHtmlVocabulary())
+		fichier.close()
 
 
 if __name__ == '__main__':
         #On vérifie le nombre d'argument, puis on instancie et utilise la classe Main
-        if len(sys.argv) != 10:
-                print "Syntax: %s pdffile videofile slidefile nbColonne humanTranscript paragraphefile speechfile pagefile alignmentfile" % sys.argv[0]
+        if len(sys.argv) != 11:
+                print "Syntax: %s pdffile videofile slidefile nbColonne humanTranscript paragraphefile speechfile pagefile alignmentfile vocabularyfile" % sys.argv[0]
                 exit(1)
         else:
-                filePdf = sys.argv[1]
-                fileTranscript = sys.argv[2]
-                fileSlide = sys.argv[3]
-                nbColonnePdf = sys.argv[4]
-                humanTranscript = sys.argv[5]
-                fileParagraphe = sys.argv[6]
-                fileSpeech = sys.argv[7]
-                filePage = sys.argv[8]
-                fileAlignement = sys.argv[9]
+			filePdf = sys.argv[1]
+			fileTranscript = sys.argv[2]
+			fileSlide = sys.argv[3]
+			nbColonnePdf = sys.argv[4]
+			humanTranscript = sys.argv[5]
+			fileParagraphe = sys.argv[6]
+			fileSpeech = sys.argv[7]
+			filePage = sys.argv[8]
+			fileAlignement = sys.argv[9]
+			fileVocabulary = sys.argv[10]
 
-                main = Main()
+			main = Main()
 
-                main.run(filePdf, fileTranscript, fileSlide, nbColonnePdf, humanTranscript)
-                main.generateHtml(fileParagraphe, fileSpeech, filePage, fileAlignement)
+			main.run(filePdf, fileTranscript, fileSlide, nbColonnePdf, humanTranscript)
+			main.generateHtml(fileParagraphe, fileSpeech, filePage, fileAlignement, fileVocabulary)

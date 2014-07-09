@@ -25,7 +25,7 @@ pdftohtml -xml $1 $6/pdf.xml
 rm -f $6/*.png
 
 #Lancement du script
-python main.py $6/pdf.xml $6/transcript.xml $6/slide.xml $4 $5 $6/paragraphe.html $6/speech.html $6/page.html $6/alignement.html
+python main.py $6/pdf.xml $6/transcript.xml $6/slide.xml $4 $5 $6/paragraphe.html $6/speech.html $6/page.html $6/alignement.html $6/vocabulary.html
 
 #Génération des images de l'article
 convert -density 300 $1 $6/img/PICTURE.jpg

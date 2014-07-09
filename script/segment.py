@@ -154,7 +154,20 @@ class Documents:
 
 		return text
 
+	def generateHtmlVocabulary(self):
+		"""Renvoie les informations sur le vocabulaire au format html"""
 
+		text = "<div id=\"data_vocabulary\">\n"
+
+		for lemme, id_lemme in self.vocabulary.iteritems():
+			text += "<span id=\"vocabulary_" + str(id_lemme) + "\" class=\"vocabulary\" data-id=\"" + str(id_lemme) + "\" >" + lemme + "</span>"
+		
+		for i, word in enumerate(self.stop_words):
+			text += "<span id=\"stop_words_" + str(i) + "\" class=\"stop_words\" data-id=\"" + str(i) + "\" >" + word + "</span>"
+
+		text += "</div>"
+
+		return text
 
 class Segment:
 	"""Définit un segment, soit un paragraphe, soit un speech"""
