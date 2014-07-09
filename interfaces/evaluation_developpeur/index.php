@@ -15,6 +15,7 @@
     </head>
     <body>
 
+		<!-- Données -->
 		<div id="data">
 			<?php
 				include($chemin . "paragraphe.html");
@@ -24,12 +25,20 @@
 			?>
 		</div>
 
+
+		<!-- Contrôles -->
+
 		<div id="controle">
 			<input type="button" value="Afficher le résultat" id="resultat" onclick="afficherResultat();"/>
 			<input type="button" value="Reset" id="reset" onclick="resetEvaluation();"/>
 		</div>
 
+
+		<!-- Affichage -->
+
 		<div id="affichage">
+
+			<!-- Transcript -->
 			<div id="transcript">
 				Transcript <span id="transcript_id"></span>
 				<div id="info_transcript">
@@ -40,6 +49,7 @@
 				<div id="text_transcript"></div>
 			</div>
 
+			<!-- Paragraphes -->
 			<div id="paragraphe">
 				<div id="paragraphe1" onclick="selectParagraphe(1)">
 					Paragraphe 1 : 
@@ -68,6 +78,7 @@
 			</div>	
 		</div>
 
+		<!-- Initialisation de l'évaluation -->
 		<script type="text/javascript">
 			var idSpeech = 0;
 			var nbSpeech = d3.select("#data_transcript")[0][0].dataset.number;
