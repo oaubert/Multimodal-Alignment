@@ -176,7 +176,7 @@ class Segment:
 		À partir du vocabulaire et des stops-words de l'ensemble des documents, on va tokenizer et lemmatizer le segment, pour trouver son vocabulaire
 		"""
 
-		for word, pos in stem.lem.tokenize(self.doc):
+		for word, pos in lem.tokenize(self.doc):
 			self.words.append(Word(word, pos, vocabulary, stop_words))
 
 	def infoWords(self, df, idf, tf, tfidf, idSegment):
@@ -417,7 +417,7 @@ class Word:
 
 		self.word = word
 		self.pos_tag = pos_tag
-		self.lemme = stem.lem.lemmatize(self.word.lower(), self.pos_tag)
+		self.lemme = lem.lemmatize(self.word.lower(), self.pos_tag)
 
 		if self.word.lower() in stop_words:
 			self.idWord = -1
