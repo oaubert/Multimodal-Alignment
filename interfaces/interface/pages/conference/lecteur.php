@@ -7,12 +7,12 @@ $chemin = $_SESSION['conference'];
     <head>
         <title>Test Synchro Txt/Vid</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
-        <script src="../../JAVASCRIPT/jquery-ui/js/jquery-1.10.2.js"></script>
-		<script src="../../JAVASCRIPT/jquery-ui/js/jquery-ui-1.10.4.custom.js"></script>
+        <script src="../../../../js/jquery/js/jquery-1.10.2.js"></script>
+		<script src="../../../../js/jquery/js/jquery-ui-1.10.4.custom.js"></script>
         <script src="../../JAVASCRIPT/popcorn.js"></script>
         <script src="../../JAVASCRIPT/synchronisation.js"></script>	
         <script src="../../JAVASCRIPT/progressbar_mini.js"></script>
-        <link href="../../JAVASCRIPT/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet" type="text/css">
+        <link href="../../../../js/jquery/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet" type="text/css">
         <link href="../../CSS/Synchro.css" rel="stylesheet" type="text/css"> 
 		<link href="../../CSS/Editor.css" rel="stylesheet" type="text/css">  
     </head>
