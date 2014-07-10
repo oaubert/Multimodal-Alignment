@@ -37,7 +37,7 @@
 		</div>
 		<div id='milieu'>
 			<div id='video'>
-				<!-- Affichage de la vidÃ©o -->
+				<!-- Affichage de la vidéo -->
 				<video onmousedown='DebutModificationTailleVideo(event)' class="drag" width="100%" id="ourvideo">
 					<?php echo '<source src=\''.$chemin.'video.webm\'>'; ?> 
 					<code>video</code>
@@ -82,10 +82,7 @@
 		<div id='lien_pdf' >
 			<a top='10px' onclick="window.open('<?php echo $chemin.'/paper.pdf'; ?>');" onmouseover="" style="cursor: pointer;">Lien de téléchargement du pdf</a>
 		</div>
-        <!-- Version Test
-        Cette liste doit Ãªtre gÃ©nÃ©rÃ© par code javascript -->
-
-
+        
 		<script type="text/javascript">
 			var dataParagraphe = d3.selectAll(".data_paragraphe")[0];
 			var dataSpeech = d3.selectAll(".data_speech")[0];
@@ -108,7 +105,7 @@
 					string += "<a id='" + id + "' onClick='SynchroniseVideo(" + id + ")' time='" + "0.0_0.0" + "' "; //time pourra être remplacé par les temps de dataLink -- lequel ?
 					style = "top:" + paragraphe[j].dataset.top + "%; left:" + paragraphe[j].dataset.left + "%; right:" + paragraphe[j].dataset.right + "%; bottom:" + paragraphe[j].dataset.bottom + "%;";
                     string += "style='position:absolute; " + style + " z-index:1;' ";
-                    string += "title='" + "0.0_0.0" + "' "; //ttle pourra être remplacé par les temps de dataLink
+                    string += "title='" + "0.0_0.0" + "' "; //title pourra être remplacé par les temps de dataLink
                     string += "onmouseout=\"this.style.background='rgba(0, 0, 0, 0)';\" onmouseover=\"this.style.background='rgba(4, 133, 157, 0.15)';\">";
                     string += "</a>";
 

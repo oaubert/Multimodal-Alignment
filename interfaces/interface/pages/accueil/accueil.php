@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Projet Synchronisation Texte/VidÃ©o</title>
+        <title>Projet Synchronisation Texte/Vidéo</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
 		<link href="../../CSS/accueil.css" rel="stylesheet" type="text/css"> 
 	</head>
 	<body>
 		<div id='entete'>
-			<h1>Projet : Synchronisation Texte/VidÃ©o</h1>
+			<h1>Projet : Synchronisation Texte/Vidéo</h1>
 		</div>
 		<div id='choix'>
                 
 			<form action='choix_conf.php' method="post">      
 				<fieldset>
-					<legend> Choix de la confÃ©rence : </legend><br/>
+					<legend> Choix de la conférence : </legend><br/>
 					
-						<label id='conference' for="confÃ©rence">Titre de la confÃ©rence : </label>
+						<label id='conference' for="confÃ©rence">Titre de la conférence : </label>
 						<select name='conference' size='1' id='conference'>
                                                     <?php
                                                         /* Ici, on récupère le nom de tous les dossiers présents dans le dossier
