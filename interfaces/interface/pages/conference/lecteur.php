@@ -12,12 +12,23 @@ $chemin = $_SESSION['conference'];
         <script src="../../JAVASCRIPT/popcorn.js"></script>
         <script src="../../JAVASCRIPT/synchronisation.js"></script>	
         <script src="../../JAVASCRIPT/progressbar_mini.js"></script>
+		<script type="text/javascript" src="../../../../js/d3/d3.min.js"></script>
         <link href="../../../../js/jquery/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet" type="text/css">
         <link href="../../CSS/Synchro.css" rel="stylesheet" type="text/css"> 
 		<link href="../../CSS/Editor.css" rel="stylesheet" type="text/css">  
     </head>
     <body onLoad="initialisation(ourvideo, 50, false);">
 		<?php include 'function.php'; ?>
+
+		<div id="data">
+			<?php 
+				include("../../../data/Regrets2/paragraphe.html");
+				include("../../../data/Regrets2/speech.html");
+				include("../../../data/Regrets2/page.html");
+				include("../../../data/Regrets2/alignement.html");
+			?>
+		</div>
+
 		<div id='entete'>
 			<h1>TEST DE SYNCHRONISATION</h1>
 		</div>
@@ -38,7 +49,7 @@ $chemin = $_SESSION['conference'];
 				<tr>
 					<td valign='center' width='49%' id="tdTexte">
                         <?php
-                            chargerDocument(false);
+                            //chargerDocument(false);
                         ?>
 					</td>
 				</tr>
@@ -75,6 +86,41 @@ $chemin = $_SESSION['conference'];
         <!-- Version Test
         Cette liste doit Ãªtre gÃ©nÃ©rÃ© par code javascript -->
 
-        
+
+		<script type="text/javascript">
+			var dataParagraphe = d3.selectAll(".data_paragraphe")[0];
+			var dataSpeech = d3.selectAll(".data_speech")[0];
+			var dataPage = d3.selectAll(".data_page")[0];
+			var dataLink = d3.selectAll(".data_link")[0];
+
+			var id = 0;
+			var style;
+			var string = "";
+			var paragraphe;
+
+			for(i = 0; i < dataPage.length; i++)
+			{
+				paragraphe = $(".data_paragraphe[data-idPage=\"" + dataPage[i].dataset.id + "\"]");
+				string += "<div id=\"pdf_affiche\" style=\"position:relative;\" width='100%' height='100%' display='inline'>"
+				
+				for(j = 0; j < paragraphe.length; j++)
+				{
+					string += "<a id='" + id + "' onClick='SynchroniseVideo(" + id + ")' time='" + "0.0_0.0" + "' "; //time pourra être remplacé par les temps de dataLink -- lequel ?
+					style = "top:" + paragraphe[j].dataset.top + "%; left:" + paragraphe[j].dataset.left + "%; right:" + paragraphe[j].dataset.right + "%; bottom:" + paragraphe[j].dataset.bottom + "%;";
+                    string += "style='position:absolute; " + style + " z-index:1;' ";
+                    string += "title='" + "0.0_0.0" + "' "; //ttle pourra être remplacé par les temps de dataLink
+                    string += "onmouseout=\"this.style.background='rgba(0, 0, 0, 0)';\" onmouseover=\"this.style.background='rgba(4, 133, 157, 0.15)';\">";
+                    string += "</a>";
+
+					id = id + 1;
+				}
+
+				string += "<img src='" + "../../../data/Regrets2/img/PICTURE_" + dataPage[i].dataset.numero + ".jpg' style='position:relative; top:0px; left:0px;' width='100%'/></div>";
+			}			
+
+			$("#tdTexte").html(string);
+			
+		</script>       
+ 
     </body>
 </html>

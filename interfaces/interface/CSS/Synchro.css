@@ -93,6 +93,9 @@ h1{
 	color: white;
 }
 
-
+#data_pdf, #data_transcript, #data_pagePdf, #data_alignement
+{
+	display:none;
+}
 
 
