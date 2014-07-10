@@ -1,6 +1,5 @@
 <?php 
-session_start();
-$chemin = $_SESSION['conference'];
+	$chemin = "../../../data/" . $_GET['document'] . '/';
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,10 +21,10 @@ $chemin = $_SESSION['conference'];
 
 		<div id="data">
 			<?php 
-				include("../../../data/Regrets2/paragraphe.html");
-				include("../../../data/Regrets2/speech.html");
-				include("../../../data/Regrets2/page.html");
-				include("../../../data/Regrets2/alignement.html");
+				include($chemin . "paragraphe.html");
+				include($chemin . "speech.html");
+				include($chemin . "page.html");
+				include($chemin . "alignement.html");
 			?>
 		</div>
 
@@ -40,7 +39,7 @@ $chemin = $_SESSION['conference'];
 			<div id='video'>
 				<!-- Affichage de la vidÃ©o -->
 				<video onmousedown='DebutModificationTailleVideo(event)' class="drag" width="100%" id="ourvideo">
-					<?php echo '<source src=\''.$chemin.'/'.$video.'\'>'; ?> 
+					<?php echo '<source src=\''.$chemin.'video.webm\'>'; ?> 
 					<code>video</code>
 				</video>
 			</div>
@@ -81,7 +80,7 @@ $chemin = $_SESSION['conference'];
 			</table>
         </div>
 		<div id='lien_pdf' >
-			<a top='10px' onclick="window.open('<?php echo $chemin.'/'.$pdf; ?>');" onmouseover="" style="cursor: pointer;">Lien de téléchargement du pdf</a>
+			<a top='10px' onclick="window.open('<?php echo $chemin.'/paper.pdf'; ?>');" onmouseover="" style="cursor: pointer;">Lien de téléchargement du pdf</a>
 		</div>
         <!-- Version Test
         Cette liste doit Ãªtre gÃ©nÃ©rÃ© par code javascript -->
@@ -92,6 +91,7 @@ $chemin = $_SESSION['conference'];
 			var dataSpeech = d3.selectAll(".data_speech")[0];
 			var dataPage = d3.selectAll(".data_page")[0];
 			var dataLink = d3.selectAll(".data_link")[0];
+			var chemin = "<?php echo $chemin; ?>";
 
 			var id = 0;
 			var style;
@@ -115,11 +115,11 @@ $chemin = $_SESSION['conference'];
 					id = id + 1;
 				}
 
-				string += "<img src='" + "../../../data/Regrets2/img/PICTURE_" + dataPage[i].dataset.numero + ".jpg' style='position:relative; top:0px; left:0px;' width='100%'/></div>";
+				string += "<img src='" + chemin + "img/PICTURE_" + dataPage[i].dataset.numero + ".jpg' style='position:relative; top:0px; left:0px;' width='100%'/></div>";
 			}			
 
 			$("#tdTexte").html(string);
-			
+	
 		</script>       
  
     </body>
