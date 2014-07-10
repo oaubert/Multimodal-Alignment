@@ -22,7 +22,7 @@
                                                          * /pages/conference, afin de créer les liens dans le formulaire vers 
                                                          * les différentes pages de conférence
                                                          */
-                                                        $directory = '../conference/';
+                                                        $directory = '../../../data/';
                                                         if (is_dir($directory)) {
                                                           if ($dh = opendir($directory)) {
                                                             while (($file = readdir($dh)) !== false) {
