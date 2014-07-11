@@ -1,4 +1,5 @@
 <?php 
+	$document = $_GET['document'];
 	$chemin = "../../../data/" . $_GET['document'] . '/';
 ?>
 <!DOCTYPE html>
@@ -32,7 +33,7 @@
 		</div>
 		<div id="accueil">
 				<div class="boutons"><a href="../accueil/accueil.php">Accueil</a></div>	
-                <div class="boutons"><a href="editer.php">Editer</a></div>	
+                <div class="boutons"><a href="editer.php?document=<?php echo $_GET['document']; ?>">Editer</a></div>	
 		</div>
 		<div id='milieu'>
 			<div id='video'>
