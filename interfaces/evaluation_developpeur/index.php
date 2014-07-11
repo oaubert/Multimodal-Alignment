@@ -4,7 +4,7 @@
 ?>
 <html>
     <head>
-        <title>Test Alignement Local</title>
+        <title>Interface d'évaluation - Transcript et 3 meilleurs paragraphes</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<link href="style.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" type="text/css" href="../../js/jquery/css/ui-lightness/jquery-ui-1.10.4.custom.min.css">

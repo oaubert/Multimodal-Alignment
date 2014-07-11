@@ -4,7 +4,7 @@
 ?>
 <html>
     <head>
-        <title>Test Alignement Local</title>
+        <title>Interface d'évaluation - Vidéo et 3 meilleurs paragraphes</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<link href="style.css" rel="stylesheet" type="text/css">
 		<script src="video.js"></script>
