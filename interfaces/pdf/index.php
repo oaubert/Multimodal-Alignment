@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+	$document = $_GET['document'];
 	$chemin = "../data/" . $_GET['document'] . '/';
 	$num_page = $_GET['page'];
 ?>
@@ -16,6 +17,11 @@
 		<script type="text/javascript" src="../../js/jquery/js/jquery-ui.min.js"></script>
 	</head>
 	<body>
+		<div id="controls">
+			<a id="precedent" href="<?php echo 'index.php?document=' . $document . '&page=' . ($num_page -1); ?>">Précédant</a>
+			<a id="suivant" href="<?php echo 'index.php?document=' . $document . '&page=' . ($num_page +1); ?>">Suivant</a>
+		</div>
+
 		<div id="visualisation">
 		</div>
 		<?php 
