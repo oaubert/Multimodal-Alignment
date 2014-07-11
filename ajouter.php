@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Tests D3js</title>
+		<title>Ajouter une conférence</title>
 		<meta charset="UTF-8" />
-		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
 		<form action='traitement.php' method="post" enctype="multipart/form-data"> 
@@ -17,6 +16,7 @@
                 <label for="nbColonne">Nombre de colonnes par page de l'article: </label>
                 <input type="text" id="nbColonne" name="nbColonne" size="8" value="1" onfocus="this.select();"/><br/>
                 <input type="submit" value="Envoyer" name="formulaire"/>
+				<a href="index.php"><input type="button" value="Retour" name="retour"/></a>
 			</fieldset>   
         </form>
 	</body>
