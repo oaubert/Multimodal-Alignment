@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Projet Synchronisation Texte/Vidéo</title>
+        <title>Projet Synchronisation Texte/VidÃ©o</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
 		<link href="../../CSS/accueil.css" rel="stylesheet" type="text/css"> 
 	</head>
 	<body>
 		<div id='entete'>
-			<h1>Projet : Synchronisation Texte/Vidéo</h1>
+			<h1>Projet : Synchronisation Texte/VidÃ©o</h1>
 		</div>
 		<div id='choix'>
                 
 			<form action='choix_conf.php' method="post">      
 				<fieldset>
-					<legend> Choix de la conférence : </legend><br/>
+					<legend> Choix de la confÃ©rence : </legend><br/>
 					
-						<label id='conference' for="confÃ©rence">Titre de la conférence : </label>
+						<label id='conference' for="confÃƒÂ©rence">Titre de la confÃ©rence : </label>
 						<select name='conference' size='1' id='conference'>
                                                     <?php
-                                                        /* Ici, on récupère le nom de tous les dossiers présents dans le dossier
-                                                         * /pages/conference, afin de créer les liens dans le formulaire vers 
-                                                         * les différentes pages de conférence
+                                                        /* Ici, on rÃ©cupÃ¨re le nom de tous les dossiers prÃ©sents dans le dossier
+                                                         * /pages/conference, afin de crÃ©er les liens dans le formulaire vers 
+                                                         * les diffÃ©rentes pages de confÃ©rence
                                                          */
                                                         $directory = '../../../data/';
                                                         if (is_dir($directory)) {
@@ -30,7 +30,7 @@
                                                                 echo "<option value=\"".$file."\">".$file."</option>";
                                                               }
                                                             }
-                                                            closedir($dh); //Il est vivement conseillé de fermer le repertoire pour toute autre opération sur le systeme de fichier.
+                                                            closedir($dh); //Il est vivement conseillÃ© de fermer le repertoire pour toute autre opÃ©ration sur le systeme de fichier.
                                                           }
                                                         }
                                                     ?>
