@@ -18,8 +18,6 @@
 		<link href="../../CSS/Editor.css" rel="stylesheet" type="text/css">  
     </head>
     <body onLoad="initialisation(ourvideo, 50, false);">
-		<?php include 'function.php'; ?>
-
 		<div id="data">
 			<?php 
 				include($chemin . "paragraphe.html");
@@ -48,9 +46,6 @@
 			<table height='100%' width='100%' cellspacing='0px' cellpadding='0px'>
 				<tr>
 					<td valign='center' width='49%' id="tdTexte">
-                        <?php
-                            //chargerDocument(false);
-                        ?>
 					</td>
 				</tr>
 			</table >
