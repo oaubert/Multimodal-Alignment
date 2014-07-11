@@ -87,7 +87,7 @@
 			var dataLink = d3.selectAll(".data_link")[0];
 			var chemin = "<?php echo $chemin; ?>";
 
-			chargerDocument();	
+			chargerDocument(false);	
 		</script>       
  
     </body>

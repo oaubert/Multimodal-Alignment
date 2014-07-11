@@ -1,4 +1,4 @@
-function chargerDocument()
+function chargerDocument(editer)
 {
 	var id = 0;
 	var style;
@@ -12,7 +12,12 @@ function chargerDocument()
 		
 		for(j = 0; j < paragraphe.length; j++)
 		{
-			string += "<a id='" + id + "' onClick='SynchroniseVideo(" + id + ")' time='" + "0.0_0.0" + "' "; //time pourra être remplacé par les temps de dataLink -- lequel ?
+			string += "<a id='" + id + "' ";
+
+			if(editer)
+				string += "ondblclick='ModificationSynchronisation(" + id + ")' ";
+			
+			string += "onClick='SynchroniseVideo(" + id + ")' time='" + "0.0_0.0" + "' "; //time pourra être remplacé par les temps de dataLink -- lequel ?
 			style = "top:" + paragraphe[j].dataset.top + "%; left:" + paragraphe[j].dataset.left + "%; right:" + paragraphe[j].dataset.right + "%; bottom:" + paragraphe[j].dataset.bottom + "%;";
             string += "style='position:absolute; " + style + " z-index:1;' ";
             string += "title='" + "0.0_0.0" + "' "; //title pourra être remplacé par les temps de dataLink
