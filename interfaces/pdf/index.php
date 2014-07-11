@@ -18,7 +18,7 @@
 	</head>
 	<body>
 		<div id="controls">
-			<a id="precedent" href="<?php echo 'index.php?document=' . $document . '&page=' . ($num_page -1); ?>">Précédant</a>
+			<a id="precedent" href="<?php echo 'index.php?document=' . $document . '&page=' . ($num_page -1); ?>">Précédent</a>
 			<a id="suivant" href="<?php echo 'index.php?document=' . $document . '&page=' . ($num_page +1); ?>">Suivant</a>
 		</div>
 
@@ -34,6 +34,13 @@
 			var dataParagraphe = d3.selectAll(".data_paragraphe[data-idPage=\"" + num_page + "\"]")[0];
 			var dataPage = d3.selectAll(".data_page[data-id=\"" + num_page + "\"]")[0];
 			var chemin = "<?php echo $chemin ?>";
+			var nbPage = $("#data_pagePdf").attr("data-number");
+			
+			if(num_page == 0)
+				$("#precedent").hide();
+			
+			if(num_page == nbPage-1)
+				$("#suivant").hide();
 		</script>
 
 
