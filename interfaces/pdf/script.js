@@ -38,10 +38,10 @@ var svg = d3.select("#visualisation")
 			var d = dataParagraphe[i];
 			var point = new Array()
 			
-			point[0] = getPoint(dataPage_traite[d.dataset.idpage], d.dataset.left, d.dataset.top)						//en haut à gauche
-			point[1] = getPoint(dataPage_traite[d.dataset.idpage], (100 - d.dataset.right), d.dataset.top)				//en haut à droite
-			point[2] = getPoint(dataPage_traite[d.dataset.idpage], (100 - d.dataset.right), (100 - d.dataset.bottom))	//en bas à droite
-			point[3] = getPoint(dataPage_traite[d.dataset.idpage], d.dataset.left, (100 - d.dataset.bottom))			//en bas à gauche
+			point[0] = getPoint(dataPage_traite[0], d.dataset.left, d.dataset.top)						//en haut à gauche
+			point[1] = getPoint(dataPage_traite[0], (100 - d.dataset.right), d.dataset.top)				//en haut à droite
+			point[2] = getPoint(dataPage_traite[0], (100 - d.dataset.right), (100 - d.dataset.bottom))	//en bas à droite
+			point[3] = getPoint(dataPage_traite[0], d.dataset.left, (100 - d.dataset.bottom))			//en bas à gauche
 
 			dataParagraphe_traite[i] = {'id' : d.id, "page" : d.dataset.idPage, "point" : point, "number" : d.dataset.id}
 		}

@@ -10,7 +10,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta name="description" content="">
 		<link rel="stylesheet" type="text/css" href="style.css">
-		<link rel="stylesheet" type="text/css" href="styleInfo.css">
 		<link rel="stylesheet" type="text/css" href="../../js/jquery/css/ui-lightness/jquery-ui-1.10.4.custom.min.css">
 		<script type="text/javascript" src="../../js/d3/d3.min.js"></script>
 		<script type="text/javascript" src="../../js/jquery/js/jquery-1.10.2.js"></script>
