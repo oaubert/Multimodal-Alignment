@@ -42,7 +42,7 @@
                                                 
 				</fieldset>   
 			</form>
-                    <div class="precedent"><a href="upload.php">Upload</a></div>
+                    <div class="precedent"><a href="../../../../index.php">Menu</a></div>
 		</div>
 	</body>
 </html>
