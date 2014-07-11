@@ -21,7 +21,7 @@
 
 		<fieldset>
 			<legend> Interfaces de travail </legend>
-            <a href="" >Vidéo synchronisée</a> (Non disponible)<br/>
+            <a href="interfaces/interface/pages/accueil/accueil.php" >Vidéo synchronisée</a><br/>
            	<a href="interfaces/visualisation/index.php" >Interface d'évaluation</a><br/>
 			<a href="interfaces/alignement_global/index.html" >Alignement global</a>
 		</fieldset>
