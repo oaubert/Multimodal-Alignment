@@ -15,7 +15,7 @@
 				<fieldset>
 					<legend> Choix de la conférence : </legend><br/>
 					
-						<label id='conference' for="confÃ©rence">Titre de la conférence : </label>
+						<label id='conference' for="conference">Titre de la conférence : </label>
 						<select name='conference' size='1' id='conference'>
                                                     <?php
                                                         /* Ici, on récupère le nom de tous les dossiers présents dans le dossier
@@ -26,7 +26,7 @@
                                                         if (is_dir($directory)) {
                                                           if ($dh = opendir($directory)) {
                                                             while (($file = readdir($dh)) !== false) {
-                                                              if($file!='..' && $file!='.' && $file!='modification_xml.php' && $file!='lecteur.php' && $file!='modification.php' && $file!='function.php' && $file!='menu.php' && $file!='editer.php'){//N'affiche pas le . et ..
+                                                              if($file!='..' && $file!='.'){//N'affiche pas le . et ..
                                                                 echo "<option value=\"".$file."\">".$file."</option>";
                                                               }
                                                             }
