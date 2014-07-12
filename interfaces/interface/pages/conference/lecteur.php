@@ -19,6 +19,8 @@
 		<link href="../../CSS/Editor.css" rel="stylesheet" type="text/css">  
     </head>
     <body onLoad="initialisation(ourvideo, 50, false);">
+
+		<!-- Données -->
 		<div id="data">
 			<?php 
 				include($chemin . "paragraphe.html");
@@ -28,21 +30,31 @@
 			?>
 		</div>
 
+
+		<!-- Titre -->
 		<div id='entete'>
 			<h1>TEST DE SYNCHRONISATION</h1>
 		</div>
+
+		<!-- Menu -->
 		<div id="accueil">
 				<div class="boutons"><a href="../accueil/accueil.php">Accueil</a></div>	
                 <div class="boutons"><a href="editer.php?document=<?php echo $_GET['document']; ?>">Editer</a></div>	
 		</div>
+
+
+		<!-- Affichage -->
 		<div id='milieu'>
+
+			<!-- Affichage de la vidéo -->
 			<div id='video'>
-				<!-- Affichage de la vidéo -->
 				<video onmousedown='DebutModificationTailleVideo(event)' class="drag" width="100%" id="ourvideo">
 					<?php echo '<source src=\''.$chemin.'video.webm\'>'; ?> 
 					<code>video</code>
 				</video>
 			</div>
+
+			<!-- Affichage de l'article -->
 			<div id="texte" width='100%'>
 			<table height='100%' width='100%' cellspacing='0px' cellpadding='0px'>
 				<tr>
@@ -52,6 +64,9 @@
 			</table >
 			</div>
 		</div>
+
+		
+		<!-- Contrôles -->
         <div id="video_controller">
 			<table align='center' >
 				<tr>
@@ -76,10 +91,14 @@
 				</tr>
 			</table>
         </div>
+
+		<!-- Téléchargement du pdf -->
 		<div id='lien_pdf' >
 			<a top='10px' onclick="window.open('<?php echo $chemin.'/paper.pdf'; ?>');" onmouseover="" style="cursor: pointer;">Lien de téléchargement du pdf</a>
 		</div>
         
+		
+		<!-- Initialisation du javascript -->
 		<script type="text/javascript">
 			var dataParagraphe = d3.selectAll(".data_paragraphe")[0];
 			var dataSpeech = d3.selectAll(".data_speech")[0];
