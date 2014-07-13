@@ -6,21 +6,28 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
+		
+		<!-- Choix des mots -->
 		<label for="mot1">Mot 1</label> : <input id="mot1" type="text" />	
 		<label for="mot2">Mot 2</label> : <input id="mot2" type="text" />
-		<button onclick="update()">Ici</button>
+		<button onclick="update()">Affiche la matrice de coût</button>
 
+		<!-- Matrice de coûts -->
 		<table id="matrice_cout" border="1">
 		</table>
 
-		<button id="la" onclick="go()" style="display:none">Là</button>
+		<button id="la" onclick="go()" style="display:none">Génère la matrice des scores</button>
 
+
+		<!-- Matrice des scores -->
 		<table id="matrice_score" border="1">
 		</table>
 
+		<!-- Contrôles -->
 		<button id="init" onclick="initAlignement();" style="display:none">Init Alignement</button>
 		<button id="meilleur" onclick="meilleursAlignement();" style="display:none">Meilleurs Alignement</button>
 
+		<!-- Commentaires -->
 		<div id="res">
 			Actuellement :
 			<ul>
