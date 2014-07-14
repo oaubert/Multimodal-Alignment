@@ -1,3 +1,9 @@
+/* Charge l'article dans la page
+	-Affiche les images des pages
+	-Créer des liens pour chaque paragraphes
+	-Prend en paramètre un booléen pour savoir si on est en mode éditer ou non
+		-Si oui, rajoute un event sur le double clique
+*/
 function chargerDocument(editer)
 {
 	var id = 0;
