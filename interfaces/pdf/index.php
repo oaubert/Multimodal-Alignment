@@ -17,11 +17,13 @@
 		<script type="text/javascript" src="../../js/jquery/js/jquery-ui.min.js"></script>
 	</head>
 	<body>
+		<!-- Contrôles -->
 		<div id="controls">
 			<a id="precedent" href="<?php echo 'index.php?document=' . $document . '&page=' . ($num_page -1); ?>">Précédent</a>
 			<a id="suivant" href="<?php echo 'index.php?document=' . $document . '&page=' . ($num_page +1); ?>">Suivant</a>
 		</div>
 
+		<!-- Visualisation -->
 		<div id="visualisation">
 		</div>
 		<?php 
@@ -29,6 +31,7 @@
 			include($chemin . "page.html");
 		?>
 
+		<!-- Initialisation des scripts -->
 		<script type="text/javascript">
 			var num_page = "<?php echo $num_page ?>";
 			var dataParagraphe = d3.selectAll(".data_paragraphe[data-idPage=\"" + num_page + "\"]")[0];
