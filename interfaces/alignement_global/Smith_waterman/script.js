@@ -14,6 +14,9 @@ var score = [];
 var delta = -6;
 var seuil = 4;
 
+/* Récupère les mots rentrés en paramètre
+   Initialise et affiche la matrice des coûts
+*/
 function update()
 {
 	mot1 = "#" + document.getElementById("mot1").value;
@@ -24,6 +27,8 @@ function update()
 	button.style="display:block";
 }
 
+/* Créer la matrice des scores en fonction des mots et de la matrice des coûts
+*/
 function go()
 {
 	initScore();
