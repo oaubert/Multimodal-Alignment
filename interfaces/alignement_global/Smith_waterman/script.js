@@ -38,6 +38,9 @@ function go()
 	buttonMeilleur.style="display:block";
 }
 
+/* Lis les mots et pour chaque récupère toutes les lettres distinctes les composant
+	Permet de créer la matrice des coûts
+*/
 function updateLetter()
 {
 	letter1 = []
@@ -63,6 +66,13 @@ function updateLetter()
 	}
 }
 
+/* Créé la matrice des coûts
+	La matrice avec les lettres distinctes du mot 1 en ligne, et celle du mot 2 en colonne
+	La matrice est pré remplie ainsi :
+		- -6 si insertion (#)
+		- 4 si mêmes lettres
+		- -5 si lettres différentes
+*/
 function creerMatriceCout()
 {	
 	var str = "<tr><td></td>";
@@ -97,6 +107,8 @@ function creerMatriceCout()
 
 }
 
+/* Lis le coût d'alignement des lettres a et b dans la matrice des coûts
+*/
 function cout(a,b)
 {
 	return parseInt(document.getElementById(mot1.charAt(a) + "_" + mot2.charAt(b)).value);
