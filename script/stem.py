@@ -47,7 +47,7 @@ class LemmaTokenizer(object):
 	def tokenize(self, doc):
 		"""Tokenize un texte
 
-		Cette fonction renvoie la liste des couples (lemme, pos_tag) à partir du texte
+		Cette fonction renvoie la liste des couples (token, pos_tag) à partir du texte
 		"""
 
 		res = []
