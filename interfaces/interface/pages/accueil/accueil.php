@@ -11,38 +11,30 @@
 		</div>
 		<div id='choix'>
                 
-			<form action='choix_conf.php' method="post">      
-				<fieldset>
-					<legend> Choix de la conf√©rence : </legend><br/>
-					
-						<label id='conference' for="conference">Titre de la conf√©rence : </label>
-						<select name='conference' size='1' id='conference'>
+                            <ul>
                                                     <?php
-                                                        /* Ici, on r√©cup√®re le nom de tous les dossiers pr√©sents dans le dossier
-                                                         * /pages/conference, afin de cr√©er les liens dans le formulaire vers 
-                                                         * les diff√©rentes pages de conf√©rence
+                                                        /* Ici, on rÈcupËre le nom de tous les dossiers prÈsents dans le dossier
+                                                         * /pages/conference, afin de crÈer les liens dans le formulaire vers 
+                                                         * les diffÈrentes pages de confÈrence
                                                          */
-                                                        $directory = '../../../data/';
+                                                        $directory = '../conference/';
                                                         if (is_dir($directory)) {
                                                           if ($dh = opendir($directory)) {
                                                             while (($file = readdir($dh)) !== false) {
-                                                              if($file!='..' && $file!='.'){//N'affiche pas le . et ..
-                                                                echo "<option value=\"".$file."\">".$file."</option>";
+                                                              if($file!='..' && $file!='.' && $file!='modification_xml.php' && $file!='lecteur.php' && $file!='modification.php' && $file!='function.php' && $file!='menu.php' && $file!='editer.php'){//N'affiche pas le . et ..
+                                                                echo "<li><a href='../conference/lecteur.php?conference=$file'>$file</a></li>";
                                                               }
                                                             }
-                                                            closedir($dh); //Il est vivement conseill√© de fermer le repertoire pour toute autre op√©ration sur le systeme de fichier.
+                                                            closedir($dh); //Il est vivement conseillÈ de fermer le repertoire pour toute autre opÈration sur le systeme de fichier.
                                                           }
                                                         }
                                                     ?>
 
 						</select>
-						<div id='valider'>
-						<input name="go" type="submit" title="Envoyer le message" />  
 						</div>
                                                 
 				</fieldset>   
-			</form>
-                    <div class="precedent"><a href="../../../../index.php">Menu</a></div>
+                    <div class="precedent"><a href="upload.php">Upload</a></div>
 		</div>
 	</body>
 </html>

@@ -37,8 +37,6 @@ function initialisation(v, tailleProgressBar, edit) {
     glob_BarreTemps = document.getElementById("timeline");
 	glob_tailleProgressBar = (tailleProgressBar * $( window ).width()*0.90 / 100);
 
-	tailleBasseResolution();
-
     //Ajout des écouteurs sur les différents boutons 
 	if(!edit)
     	glob_BoutonLecture.addEventListener("click", Lecture, false);
@@ -80,25 +78,6 @@ function initialisation(v, tailleProgressBar, edit) {
 		
 			$( "#amount" ).val("00:00 - 00:00");
 			});   
-	}
-}
-
-function tailleBasseResolution()
-{
-	var tailleSomme = document.getElementById('video').offsetWidth + document.getElementById('texte').offsetWidth + 11;
-	
-	if(tailleSomme > document.getElementById('milieu').offsetWidth)
-	{
-		newHauteur = 0.75*$(window).height();
-		newLargeur = 0.45*document.getElementById('milieu').offsetWidth;
-
-		document.getElementById('video').style.width = newLargeur+"px";
-		document.getElementById('texte').style.width = newLargeur+"px";
-
-		document.getElementById('video').style.height = newHauteur+"px";
-		document.getElementById('texte').style.height = newHauteur+"px";
-
-		document.getElementById('milieu').style.height = (newHauteur + 10) + "px";
 	}
 }
 
@@ -406,7 +385,7 @@ function ModifierTailleVideo(e){
     hauteur = document.getElementById('video').offsetHeight;
     taillediv = document.getElementById('milieu').offsetWidth;
     rapport = document.getElementById('video').offsetWidth/hauteur;
-    if(hauteur <= taille || newTaille < taille2){
+    if(hauteur < 594 || newTaille < taille2){
 	if(hauteur > 100 || newTaille > taille2){
             document.getElementById('video').style.width = newTaille+"px";
             document.getElementById('texte').style.width = taillediv-newTaille-11+"px";

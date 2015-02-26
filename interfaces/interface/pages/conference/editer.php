@@ -1,45 +1,35 @@
-<?php
-	$document = $_GET['document'];
-	$chemin = "../../../data/" . $_GET['document'] . '/';
+<?php 
+session_start();
+$chemin = $_SESSION['conference'];
 ?>
 <!DOCTYPE html>
 <html>
     <head>
         <title>Test Synchro Txt/Vid</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 		
-		<script src="../../../../js/jquery/js/jquery-1.10.2.js"></script>
-		<script src="../../../../js/jquery/js/jquery-ui-1.10.4.custom.js"></script>
+		<script src="../../JAVASCRIPT/jquery-ui/js/jquery-1.10.2.js"></script>
+		<script src="../../JAVASCRIPT/jquery-ui/js/jquery-ui-1.10.4.custom.js"></script>
         <script src="../../JAVASCRIPT/popcorn.js"></script>
         <script src="../../JAVASCRIPT/synchronisation.js"></script>	
         <script src="../../JAVASCRIPT/progressbar_mini.js"></script>
-		<script type="text/javascript" src="../../../../js/d3/d3.min.js"></script>
-		<script type="text/javascript" src="script.js"></script>
-        <link href="../../../../js/jquery/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet" type="text/css">
+        <link href="../../JAVASCRIPT/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet" type="text/css">
         <link href="../../CSS/Synchro.css" rel="stylesheet" type="text/css"> 
 		<link href="../../CSS/Editor.css" rel="stylesheet" type="text/css"> 
     </head>
     <body onLoad="initialisation(ourvideo, 100, true);">
-		<div id="data">
-			<?php 
-				include($chemin . "paragraphe.html");
-				include($chemin . "speech.html");
-				include($chemin . "page.html");
-				include($chemin . "alignement.html");
-			?>
-		</div>
-
+        <?php include 'function.php'; ?>
 		<div id='entete'>
 			<h1>TEST DE SYNCHRONISATION</h1>
 		</div>
 		<div id="accueil">
 				<div class="boutons"><a href="../accueil/accueil.php">Accueil</a></div>	
-				<div class="boutons"><a href="lecteur.php?document=<?php echo $_GET['document']; ?>">Original</a></div>
+				<div class="boutons"><a href="lecteur.php">Original</a></div>
 		</div>
 		<div id='milieu'>
 			<div id='video'>
 				<!-- Affichage de la vidéo -->
 				<video onmousedown='DebutModificationTailleVideo(event)' class="drag" width="100%" id="ourvideo">
-					<?php echo '<source src=\''.$chemin.'video.webm\'>'; ?> 
+					<?php echo '<source src=\''.$chemin.'/'.$video.'\'>'; ?> 
 					<code>video</code>
 				</video>
 			</div>
@@ -47,6 +37,9 @@
 			<table height='100%' width='100%' cellspacing='0px' cellpadding='0px'>
 				<tr>
 					<td valign='center' width='49%' id="tdTexte">
+                        <?php
+                            chargerDocument(True);
+                        ?>
 					</td>
 				</tr>
 			</table >
@@ -80,18 +73,11 @@
 			</table>
         </div>
 		<div id='lien_pdf' >
-			<a top='10px' onclick="window.open('<?php echo $chemin.'/paper.pdf'; ?>');" onmouseover="" style="cursor: pointer;">Lien de téléchargement du pdf</a>
+			<a top='10px' onclick="window.open('<?php echo $chemin.'/'.$pdf; ?>');" onmouseover="" style="cursor: pointer;">Lien de téléchargement du pdf</a>
 		</div>
+        <!-- Version Test
+        Cette liste doit Ãªtre gÃ©nÃ©rÃ© par code javascript -->
+
         
-		<script type="text/javascript">
-			var dataParagraphe = d3.selectAll(".data_paragraphe")[0];
-			var dataSpeech = d3.selectAll(".data_speech")[0];
-			var dataPage = d3.selectAll(".data_page")[0];
-			var dataLink = d3.selectAll(".data_link")[0];
-			var chemin = "<?php echo $chemin; ?>";
-
-			chargerDocument(true);	
-		</script> 
-
     </body>
 </html>

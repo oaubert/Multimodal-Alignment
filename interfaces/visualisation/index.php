@@ -34,6 +34,6 @@
 			?>
 		</fieldset>
 
-		<a href="../../index.php"> Menu </a>
+		<a href="../../index.html"> Menu </a>
 	</body>
 </html>
