@@ -1,0 +1,46 @@
+body {
+	font-family: Helvetica, Verdana, Geneva, sans-serif;
+	color: black;
+	background-color: white;
+    max-width: 40em;
+    margin: auto;
+    padding: .5em;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: #00e;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    text-align: center;
+    clear: both;
+}
+
+.detail {
+    float: left;
+}
+
+section div {
+    display: inline-block;
+    margin: 1em;
+    text-align: center;
+    vertical-align: top;
+}
+
+#work {
+    opacity: .4;
+}
+
+footer {
+    clear: both;
+    padding-top: 4em;
+    text-align: right;
+}

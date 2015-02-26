@@ -16,7 +16,7 @@
                 <label for="nbColonne">Nombre de colonnes par page de l'article: </label>
                 <input type="text" id="nbColonne" name="nbColonne" size="8" value="1" onfocus="this.select();"/><br/>
                 <input type="submit" value="Envoyer" name="formulaire"/>
-				<a href="index.php"><input type="button" value="Retour" name="retour"/></a>
+				<a href="index.html"><input type="button" value="Retour" name="retour"/></a>
 			</fieldset>   
         </form>
 	</body>
