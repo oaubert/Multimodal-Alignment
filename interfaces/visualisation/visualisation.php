@@ -55,12 +55,12 @@
 
 		<div id="controls">
 			<label for="out_nbLink">Nombre de liens :</label>
-			<input type="range" id="nbLink" min="1" max="20" step="1" value="1" onchange="selectLink(this.value, document.getElementById('seuil').value);" oninput="document.getElementById('out_nbLink').value = value;" />
-			<input type="number" id="out_nbLink" min="1" max="20" step="1" value="1" onchange="document.getElementById('nbLink').value = value; selectLink(document.getElementById('nbLink').value, document.getElementById('seuil').value);" />
+			<input type="range" id="nbLink" min="1" max="20" step="1" value="3" onchange="selectLink(this.value, document.getElementById('seuil').value);" oninput="document.getElementById('out_nbLink').value = value;" />
+			<input type="number" id="out_nbLink" min="1" max="20" step="1" value="3" onchange="document.getElementById('nbLink').value = value; selectLink(document.getElementById('nbLink').value, document.getElementById('seuil').value);" />
 
 			<label for="out_seuil">Seuil de similarité :</label>
-			<input type="range" id="seuil" min="0" max="1" step="0.01" value="0" onchange="selectLink(document.getElementById('nbLink').value, this.value);" oninput="document.getElementById('out_seuil').value = value;" />
-			<input type="number" id="out_seuil" min="0" max="1" step="0.01"  value="0" onchange="document.getElementById('seuil').value = value; selectLink(document.getElementById('nbLink').value, document.getElementById('seuil').value);" />
+			<input type="range" id="seuil" min="0" max="1" step="0.01" value="0.2" onchange="selectLink(document.getElementById('nbLink').value, this.value);" oninput="document.getElementById('out_seuil').value = value;" />
+			<input type="number" id="out_seuil" min="0" max="1" step="0.01"  value="0.2" onchange="document.getElementById('seuil').value = value; selectLink(document.getElementById('nbLink').value, document.getElementById('seuil').value);" />
 		</div>
 
 
