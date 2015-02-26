@@ -1,6 +1,9 @@
 E-research lab
 ==============
 
+Prototypes
+----------
+
 The `interfaces/` folder contains several prototypes:
 
 - `interface/` − *PDF article* and  *talk video* joint navigation
@@ -10,3 +13,8 @@ The `interfaces/` folder contains several prototypes:
 - `pdf/` − paragraph delimitation prototype
 
 The website is live at http://alignement.comin-ocw.org/
+
+Processing pipeline
+-------------------
+
+The `script/` folder contains python & bash scripts to extract text from PDFs and handle alignment with video transcripts.
