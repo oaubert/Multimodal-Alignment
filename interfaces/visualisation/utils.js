@@ -105,10 +105,8 @@ function colorTfidf(value)
 		return "#595";
 	else if(value <= 7.0*part)
 		return "#373";
-	else if(value <= 10.0*part)
-		return "#151";
 	else
-		return "#000";
+		return "#151";
 
 }
 
