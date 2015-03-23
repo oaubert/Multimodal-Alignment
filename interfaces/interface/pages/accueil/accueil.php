@@ -34,7 +34,6 @@
 						</div>
                                                 
 				</fieldset>   
-                    <div class="precedent"><a href="upload.php">Upload</a></div>
 		</div>
 	</body>
 </html>
