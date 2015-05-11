@@ -85,12 +85,19 @@ function initialisation(v, tailleProgressBar, edit) {
  * Fonction qui genere les deux tableau utiles à ce logiciel
  */
 function genererTableauInterval(){
-    for(i = 0; i < taille(); i++){
-        var tab = document.getElementById(i).getAttribute('time').split("_");	
-        var debut = tab[0];
-        var fin = tab[1];
+    var previousBegin = 0, previousEnd = 0;
+    for(var i = 0; i < taille(); i++){
+        var tab = document.getElementById(i).getAttribute('time').split("_"),
+            debut = tab[0],
+            fin = tab[1];
+        if (+debut === 0 && +fin === 0) {
+            debut = previousBegin;
+            fin = previousEnd;
+        }
         glob_TableauIntervals[i] = new Interval(debut, fin);
         glob_TableauIdsActifs[i] = false; //aucune mis en evidence des paragraphes
+        previousBegin = debut;
+        previousEnd = fin;
     }
 }
 
