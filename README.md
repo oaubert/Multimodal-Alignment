@@ -1,6 +1,19 @@
 E-research lab
 ==============
 
+This tool is a prototype for exploring multimodal alignment between a
+scientific article and the video recording of its presentation in a
+conference.
+
+Author
+------
+
+This is a work done by
+[Matthieu Riou](https://github.com/Matthieu-Riou/) in the context of a
+L3 Internship at LINA, Nantes, coached by
+[Olivier Aubert](https://github.com/oaubert/), Colin de la Higuera and
+Solen Quiniou.
+
 Prototypes
 ----------
 
